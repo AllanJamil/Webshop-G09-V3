@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+<h:body>
+    <h:outputLabel value="This is your Cart"/>
+
+    <h:form>
+        <h:dataTable styleClass="table" value="#{controller.cartItems}" var="item" cellpadding="10">
+            <h:column>
+                <f:facet name="header"></f:facet>
+                <h:graphicImage library="images" name="#{item.record.imgURL}" width="50px" height="50px"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Title</f:facet>
+                <h:outputText value="#{item.record.title}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Artist</f:facet>
+                <h:outputText value="#{item.record.artist}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Quantity</f:facet>
+                <h:inputText styleClass="qty-input" value="#{item.qty}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Total</f:facet>
+                <h:outputText value="#{item.totalPrice} SEK"/>
+            </h:column>
+        </h:dataTable>
+
+
+        <b><h:outputText style="font-size: larger" value="TOTAL: #{controller.cartTotal} SEK"/></b> <br/>
+
+        <h:commandButton value="CHECK OUT" action="#{controller.loadOrderSummary}"/>
+
+        <h:commandButton value="CONTINUE SHOPPING" action="shop"/>
+
+        <h:commandButton value="EMPTY CART" action="#{controller.clearCart}"/>
+    </h:form>
+
+    <!--> <h:form>
+         <div class="wrapper">
+             <ui:repeat var="temp" value="#{controller.getCartItems()}">
+                 <div class="product">
+                         <h:graphicImage library="images" name="#{temp.record.imgURL}" width="100px" height="100px"/>
+                         <p class="artist">#{temp.record.artist}</p>
+                         <p class="title">#{temp.record.title}</p>
+                         <p class="price">#{temp.record.price}:-</p>
+                         <p class="qty">Quantity: #{temp.qty}</p>
+                 </div>
+             </ui:repeat>
+         </div>
+         <h:commandButton value="confirmation" action="confirmation"/>
+     </h:form> <-->
+</h:body>
+
+</html>
