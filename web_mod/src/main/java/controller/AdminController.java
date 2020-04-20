@@ -20,6 +20,8 @@ public class AdminController implements Serializable {
 
     @EJB
     FetchDataBeanLocal fetchDataBeanLocal;
+
+    // Temporary variable for testing
     @EJB
     DatabaseBeanLocal databaseBeanLocal;
 
