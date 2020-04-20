@@ -56,6 +56,7 @@ public class DatabaseBean implements DatabaseBeanLocal{
         List<OrderInfoHistory> orderInfoHistoryList1 = new ArrayList<>();
         List<OrderInfoHistory> orderInfoHistoryList2 = new ArrayList<>();
         List<OrderInfoHistory> orderInfoHistoryList3 = new ArrayList<>();
+
         orderInfoHistoryList1.add(oi1);
         orderInfoHistoryList1.add(oi2);
         orderInfoHistoryList2.add(oi3);
@@ -71,6 +72,8 @@ public class DatabaseBean implements DatabaseBeanLocal{
         o2.setItems(orderInfoHistoryList2);
         o3.setItems(orderInfoHistoryList3);
         o1.setUser(u4);
+        o2.setUser(u1);
+        o3.setUser(u2);
 
         List<OrderHistory> orders1 = new ArrayList<>();
         List<OrderHistory> orders2 = new ArrayList<>();
@@ -87,6 +90,8 @@ public class DatabaseBean implements DatabaseBeanLocal{
 
         u4.setOrders(orders1);
         u1.setOrders(orders2);
+
+
 
 
         final TypedQuery<Record> query = em.createQuery("SELECT r FROM Record r", Record.class);
