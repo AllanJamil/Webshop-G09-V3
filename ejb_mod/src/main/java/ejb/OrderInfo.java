@@ -13,7 +13,7 @@ public class OrderInfo implements Serializable {
     private Record record;
     private int quantity;
     @ManyToOne(cascade = CascadeType.PERSIST)
-    private Order order;
+    private Ordera order;
 
     public OrderInfo(Record record, int quantity) {
         this.record = record;
@@ -49,11 +49,11 @@ public class OrderInfo implements Serializable {
     }
 
 
-    public Order getOrder() {
+    public Ordera getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(Ordera order) {
         this.order = order;
     }
 
@@ -61,7 +61,4 @@ public class OrderInfo implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 }
