@@ -1,15 +1,16 @@
 package ejb;
 
-
-import javax.persistence.Entity;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Database implements Serializable {
+@Stateless(name = "DatabaseEJB")
+public class DatabaseBean implements DatabaseBeanLocal{
+    public DatabaseBean() {
+    }
 
     private List<Record> recordList = new ArrayList<>();
     private List<User> userList = new ArrayList<>();
@@ -18,6 +19,7 @@ public class Database implements Serializable {
     EntityManager em;
 
 
+    @Override
     public void fillDb() {
 
         //RECORDS

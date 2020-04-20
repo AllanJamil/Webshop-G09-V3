@@ -1,6 +1,6 @@
 package controller;
 
-import ejb.Database;
+import ejb.DatabaseBeanLocal;
 import ejb.LoginBeanLocal;
 
 import javax.annotation.PostConstruct;
@@ -18,10 +18,12 @@ public class LoginController implements Serializable {
 
     @EJB
     LoginBeanLocal loginBeanLocal;
+    @EJB
+    DatabaseBeanLocal databaseBeanLocal;
 
     @PostConstruct
     public void init() {
-        System.out.println("HEJ");
+        databaseBeanLocal.fillDb();
     }
 
     public String getName() {
@@ -41,6 +43,5 @@ public class LoginController implements Serializable {
     }
 
     public void greet() {
-        message = loginBeanLocal.test(name);
     }
 }

@@ -15,7 +15,7 @@ public class User implements Serializable {
     private String password;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id; // Behövs för att identfiera rätt person med rätt knapp.
+    private Long id;
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<Order> orders = new ArrayList<>();
 
@@ -80,5 +80,17 @@ public class User implements Serializable {
     public int getTotalSpent() {
         return orders.parallelStream().mapToInt(order -> order.getItems().parallelStream()
                 .mapToInt(item -> item.getQuantity() * item.getRecord().getPrice()).sum()).sum();
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

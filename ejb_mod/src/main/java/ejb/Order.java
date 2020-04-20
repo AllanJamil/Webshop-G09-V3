@@ -2,7 +2,6 @@ package ejb;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,27 +13,15 @@ public class Order implements Serializable {
     private Long id;
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "order")
     private List<OrderInfo> items = new ArrayList<>();
-    private LocalDate date;
-    private int orderTotal;
-    private int itemsQuantity;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User user;
-
-    public Order(LocalDate date) {
-        this.date = date;
-    }
+    private int orderTotal;
+    private int itemsQuantity;
 
     public Order() {
 
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
 
     public Long getId() {
         return id;
@@ -68,4 +55,6 @@ public class Order implements Serializable {
     public int getItemsQuantity() {
         return items.parallelStream().mapToInt(item -> item.getQuantity()).sum();
     }
+
+
 }
