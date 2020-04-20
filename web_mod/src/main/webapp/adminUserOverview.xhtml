@@ -22,7 +22,7 @@
 
     <h1>CUSTOMER OVERVIEW</h1>
     <h:form>
-        <h:dataTable styleClass="table" value="#{controller.database.customerList}" var="customer" cellpadding="10">
+        <h:dataTable styleClass="table" value="#{adminController.customerList}" var="customer" cellpadding="10">
             <h:column>
                 <f:facet name="header">Username</f:facet>
                 <h:outputText value="#{customer.userName}"/>
@@ -37,14 +37,14 @@
             </h:column>
             <h:column>
                 <f:facet name="header">Spent</f:facet>
-                <h:outputText value="#{customer.purchaseHistory.totalSpent} SEK"/>
+                <h:outputText value="#{customer.getTotalSpent()} SEK"/>
             </h:column>
             <h:column>
                 <f:facet name="header">Role</f:facet>
                 <h:outputText value="#{customer.role}"/>
             </h:column>
             <h:column>
-                <h:commandButton value="VIEW" action="#{controller.viewCustomerOrder(customer.id)}"/>
+               <!-- <h:commandButton value="VIEW" action="#{controller.viewCustomerOrder(customer.id)}"/> -->
             </h:column>
         </h:dataTable>
     </h:form>

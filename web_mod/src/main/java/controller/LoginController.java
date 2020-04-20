@@ -1,6 +1,7 @@
 package controller;
 
 import ejb.DatabaseBeanLocal;
+import ejb.FetchDataBeanLocal;
 import ejb.LoginBeanLocal;
 
 import javax.annotation.PostConstruct;

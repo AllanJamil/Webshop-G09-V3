@@ -12,7 +12,7 @@ public class OrderHistory implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "order")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "order")
     private List<OrderInfoHistory> items = new ArrayList<>();
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User user;
