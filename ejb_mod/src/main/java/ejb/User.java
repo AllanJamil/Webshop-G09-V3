@@ -17,7 +17,7 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
-    private List<Ordera> orders = new ArrayList<>();
+    private List<OrderHistory> orders = new ArrayList<>();
 
 
     public User(String userName, String firstName, String lastName, String password, Role role) {
@@ -82,11 +82,11 @@ public class User implements Serializable {
                 .mapToInt(item -> item.getQuantity() * item.getRecord().getPrice()).sum()).sum();
     }
 
-    public List<Ordera> getOrders() {
+    public List<OrderHistory> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Ordera> orders) {
+    public void setOrders(List<OrderHistory> orders) {
         this.orders = orders;
     }
 

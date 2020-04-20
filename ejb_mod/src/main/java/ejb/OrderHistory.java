@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Ordera implements Serializable {
+public class OrderHistory implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "order")
-    private List<OrderInfo> items = new ArrayList<>();
+    private List<OrderInfoHistory> items = new ArrayList<>();
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User user;
     private int orderTotal;
     private int itemsQuantity;
 
-    public Ordera() {
+    public OrderHistory() {
 
     }
 
@@ -27,16 +27,16 @@ public class Ordera implements Serializable {
         return id;
     }
 
-    public List<OrderInfo> getItems() {
+    public List<OrderInfoHistory> getItems() {
         return items;
     }
 
-    public void setItems(List<OrderInfo> items) {
+    public void setItems(List<OrderInfoHistory> items) {
         this.items = items;
     }
 
     public void addNewProductToOrder(Record record, int quantity) {
-        items.add(new OrderInfo(record, quantity));
+        items.add(new OrderInfoHistory(record, quantity));
     }
 
 

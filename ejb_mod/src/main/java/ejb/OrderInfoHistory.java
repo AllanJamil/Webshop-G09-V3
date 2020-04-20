@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class OrderInfo implements Serializable {
+public class OrderInfoHistory implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,14 +13,14 @@ public class OrderInfo implements Serializable {
     private Record record;
     private int quantity;
     @ManyToOne(cascade = CascadeType.PERSIST)
-    private Ordera order;
+    private OrderHistory order;
 
-    public OrderInfo(Record record, int quantity) {
+    public OrderInfoHistory(Record record, int quantity) {
         this.record = record;
         this.quantity = quantity;
     }
 
-    public OrderInfo() {
+    public OrderInfoHistory() {
 
     }
 
@@ -49,11 +49,11 @@ public class OrderInfo implements Serializable {
     }
 
 
-    public Ordera getOrder() {
+    public OrderHistory getOrder() {
         return order;
     }
 
-    public void setOrder(Ordera order) {
+    public void setOrder(OrderHistory order) {
         this.order = order;
     }
 
