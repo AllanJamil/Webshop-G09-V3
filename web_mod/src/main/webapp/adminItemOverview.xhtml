@@ -21,7 +21,7 @@
     </div>
 
     <h1>ITEM OVERVIEW</h1>
-    <h:dataTable styleClass="table" value="#{controller.tempItemList}" var="item" cellpadding="10">
+    <h:dataTable styleClass="table" value="#{adminController.itemList}" var="item" cellpadding="10">
         <h:column>
             <f:facet name="header">Title</f:facet>
             <h:outputText value="#{item.record.title}"/>
@@ -36,7 +36,7 @@
         </h:column>
         <h:column>
             <f:facet name="header">Price</f:facet>
-            <h:outputText value="#{item.totalPrice} SEK"/>
+            <h:outputText value="#{item.calculateTotalPrice()} SEK"/>
         </h:column>
     </h:dataTable>
 

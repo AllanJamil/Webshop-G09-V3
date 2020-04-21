@@ -8,4 +8,6 @@ public interface FetchDataBeanLocal {
     List<User> fetchAllCustomers();
 
     List<OrderHistory> fetchOrderByCustomerId(Long id);
+
+    List<OrderInfoHistory> fetchItemsByOrderId(Long id);
 }

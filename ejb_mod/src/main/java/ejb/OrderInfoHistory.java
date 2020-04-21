@@ -44,7 +44,7 @@ public class OrderInfoHistory implements Serializable {
      * Metoden räknar ut summan av antalet av en specifik produkt
      * @return: summa
      */
-    public int getTotalPrice() {
+    public int calculateTotalPrice() {
         return quantity * record.getPrice();
     }
 
