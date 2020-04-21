@@ -12,7 +12,7 @@
     <h:outputLabel value="This is your Cart"/>
 
     <h:form>
-        <h:dataTable styleClass="table" value="#{controller.cartItems}" var="item" cellpadding="10">
+        <h:dataTable styleClass="table" value="#{userController.cartItems}" var="item" cellpadding="10">
             <h:column>
                 <f:facet name="header"></f:facet>
                 <h:graphicImage library="images" name="#{item.record.imgURL}" width="50px" height="50px"/>
@@ -36,13 +36,13 @@
         </h:dataTable>
 
 
-        <b><h:outputText style="font-size: larger" value="TOTAL: #{controller.cartTotal} SEK"/></b> <br/>
+        <b><h:outputText style="font-size: larger" value="TOTAL: #{userController.totalCartSum} SEK"/></b> <br/>
 
         <h:commandButton value="CHECK OUT" action="#{controller.loadOrderSummary}"/>
 
         <h:commandButton value="CONTINUE SHOPPING" action="shop"/>
 
-        <h:commandButton value="EMPTY CART" action="#{controller.clearCart}"/>
+        <h:commandButton value="EMPTY CART" action="#{userController.clearCart}"/>
     </h:form>
 
     <!--> <h:form>

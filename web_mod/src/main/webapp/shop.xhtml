@@ -14,13 +14,13 @@
         <h:outputLabel styleClass="greet" value="Welcome namn"/>
         <div class="header-btn">
             <h:form>
-                <h:commandButton styleClass="logout-btn btn " value="Logout" action="login"/>
+                <h:commandButton styleClass="logout-btn btn " value="Logout" action="#{userController.logout}"/>
             </h:form>
             <h:form>
                 <h:commandLink action="cart">
 
                     <div class="cart-icon"> <h:graphicImage library="images" name="cart.png" height="30px" width="30px" />
-                    <div class="cart-qty" style="visibility: #{controller.cartIconStatus}"> #{controller.cartLength} </div>
+                    <div class="cart-qty"> #{userController.cartLength} </div>
                     </div>
                 </h:commandLink>
             </h:form>
@@ -37,14 +37,14 @@
     </div>
 
     <div class="wrapper">
-        <ui:repeat var="temp" value="#{controller.recordList}">
+        <ui:repeat var="temp" value="#{userController.recordList}">
             <div class="product">
                 <h:form>
                     <h:graphicImage library="images" name="#{temp.imgURL}" width="100px" height="100px"/>
                     <p class="artist">#{temp.artist}</p>
                     <p class="title">#{temp.title}</p>
                     <p class="price">#{temp.price}:-</p>
-                    <h:commandButton action="#{controller.addToCart(temp.id)}" styleClass="btn" value="Add to cart"></h:commandButton>
+                    <h:commandButton action="#{userController.addToCart(temp.id)}" styleClass="btn" value="Add to cart"></h:commandButton>
                 </h:form>
             </div>
         </ui:repeat>

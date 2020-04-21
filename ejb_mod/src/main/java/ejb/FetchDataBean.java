@@ -35,5 +35,8 @@ public class FetchDataBean implements FetchDataBeanLocal {
         return orderInfoQuery.getResultList();
     }
 
-
+    @Override
+    public List<Record> getAllRecords() {
+       return em.createQuery("SELECT o FROM Record o", Record.class).getResultList();
+    }
 }
