@@ -2,7 +2,8 @@ package controller;
 
 import ejb.DatabaseBeanLocal;
 import ejb.FetchDataBeanLocal;
-import entity.User;
+import ejb.OrderHistory;
+import ejb.User;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -16,6 +17,7 @@ import java.util.List;
 public class AdminController implements Serializable {
     private User currentUser;
     private List<User> customerList;
+    private List<OrderHistory> orderHistoryList;
 
     @EJB
     FetchDataBeanLocal fetchDataBeanLocal;
@@ -31,5 +33,14 @@ public class AdminController implements Serializable {
 
     public List<User> getCustomerList() {
         return this.customerList = fetchDataBeanLocal.fetchAllCustomers();
+    }
+
+    public String viewCustomerOrder(Long id) {
+        this.orderHistoryList = fetchDataBeanLocal.fetchOrderByCustomerId(id);
+        return "adminOrderOverview";
+    }
+
+    public List<OrderHistory> getOrderHistoryList() {
+        return orderHistoryList;
     }
 }

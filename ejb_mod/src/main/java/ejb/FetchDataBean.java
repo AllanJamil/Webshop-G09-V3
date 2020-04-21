@@ -1,7 +1,5 @@
 package ejb;
 
-import entity.User;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,7 +17,15 @@ public class FetchDataBean implements FetchDataBeanLocal {
 
     @Override
     public List<User> fetchAllCustomers() {
-        TypedQuery<User> userQuery = em.createQuery("SELECT o FROM User o where o.role = 0 or o.role = 1", User.class);
+        TypedQuery<User> userQuery = em.createQuery("SELECT o FROM User o WHERE o.role = 0 OR o.role = 1", User.class);
         return userQuery.getResultList();
     }
+
+    @Override
+    public List<OrderHistory> fetchOrderByCustomerId(Long id) {
+        TypedQuery<OrderHistory> orderQuery = em.createQuery("SELECT o FROM OrderHistory o WHERE o.id =" + " :id", OrderHistory.class).setParameter("id", id);
+        return orderQuery.getResultList();
+    }
+
+
 }

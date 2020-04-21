@@ -22,25 +22,25 @@
 
     <h1>ORDER OVERVIEW</h1>
     <h:form>
-        <h:dataTable styleClass="table" value="#{controller.tempOrderList}" var="order" cellpadding="10">
+        <h:dataTable styleClass="table" value="#{adminController.orderHistoryList}" var="order" cellpadding="10">
             <h:column>
                 <f:facet name="header">Ordernumber</f:facet>
                 <h:outputText value="#{order.id}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">Date</f:facet>
-                <h:outputText value="#{order.date}"/>
+                <h:outputText value="W.I.P."/>
             </h:column>
             <h:column>
                 <f:facet name="header">Quantity</f:facet>
-                <h:outputText value="#{order.itemsQuantity}"/>
+                <h:outputText value="#{order.itemsQuantity()}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">Total</f:facet>
-                <h:outputText value="#{order.orderTotal} SEK"/>
+                <h:outputText value="#{order.orderTotal()} SEK"/>
             </h:column>
             <h:column>
-                <h:commandButton value="VIEW" action="#{controller.viewItemsInOrder(order.id)}"/>
+               <!-- <h:commandButton value="VIEW" action="#{controller.viewItemsInOrder(order.id)}"/>-->
             </h:column>
         </h:dataTable>
 

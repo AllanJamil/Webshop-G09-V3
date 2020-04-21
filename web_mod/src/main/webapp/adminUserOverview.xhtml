@@ -44,7 +44,7 @@
                 <h:outputText value="#{customer.role}"/>
             </h:column>
             <h:column>
-               <!-- <h:commandButton value="VIEW" action="#{controller.viewCustomerOrder(customer.id)}"/> -->
+                <h:commandButton value="VIEW" action="#{adminController.viewCustomerOrder(customer.id)}"/>
             </h:column>
         </h:dataTable>
     </h:form>

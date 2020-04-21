@@ -1,4 +1,4 @@
-package entity;
+package ejb;
 
 public enum Role {
     CUSTOMER,
