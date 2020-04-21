@@ -23,7 +23,7 @@ public class FetchDataBean implements FetchDataBeanLocal {
 
     @Override
     public List<OrderHistory> fetchOrderByCustomerId(Long id) {
-        TypedQuery<OrderHistory> orderQuery = em.createQuery("SELECT o FROM OrderHistory o WHERE o.id =" + " :id", OrderHistory.class).setParameter("id", id);
+        TypedQuery<OrderHistory> orderQuery = em.createQuery("SELECT o FROM OrderHistory o WHERE o.user.id =" + " :id", OrderHistory.class).setParameter("id", id);
         return orderQuery.getResultList();
     }
 

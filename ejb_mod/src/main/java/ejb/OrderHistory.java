@@ -43,7 +43,7 @@ public class OrderHistory implements Serializable {
      * Metoden kalkylerar en beställnings total summa
      * @return: summan för en beställning
      */
-    public int getOrderTotal() {
+    public int calculateOrderTotal() {
         return items.parallelStream().mapToInt(item -> item.getQuantity() * item.getRecord().getPrice()).sum();
     }
 
@@ -51,7 +51,7 @@ public class OrderHistory implements Serializable {
      * Metoden räknar ut antalet produkter i en order
      * @return: antalet produkter i en order
      */
-    public int getItemsQuantity() {
+    public int calculateItemsQuantity() {
         return items.parallelStream().mapToInt(item -> item.getQuantity()).sum();
     }
 

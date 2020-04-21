@@ -33,11 +33,11 @@
             </h:column>
             <h:column>
                 <f:facet name="header">Quantity</f:facet>
-                <h:outputText value="#{order.itemsQuantity()}"/>
+                <h:outputText value="#{order.calculateItemsQuantity()}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">Total</f:facet>
-                <h:outputText value="#{order.orderTotal()} SEK"/>
+                <h:outputText value="#{order.calculateOrderTotal()} SEK"/>
             </h:column>
             <h:column>
                <!-- <h:commandButton value="VIEW" action="#{controller.viewItemsInOrder(order.id)}"/>-->
