@@ -22,6 +22,6 @@ http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/adminUserOverview.xhtml</welcome-file>
+        <welcome-file>faces/login.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>

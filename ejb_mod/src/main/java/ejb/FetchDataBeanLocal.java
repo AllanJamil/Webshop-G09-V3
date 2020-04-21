@@ -10,4 +10,5 @@ public interface FetchDataBeanLocal {
     List<OrderHistory> fetchOrderByCustomerId(Long id);
 
     List<OrderInfoHistory> fetchItemsByOrderId(Long id);
+
 }

@@ -33,9 +33,9 @@ public class DatabaseBean implements DatabaseBeanLocal{
         this.recordList.add(r4);
 
         //USERS
-        final User u1 = new User("mrtest", "Test", "Testsson", "lösen", Role.CUSTOMER);
+        final User u1 = new User("mrtest", "Test", "Testsson", "losen", Role.CUSTOMER);
         final User u2 = new User("jacob1", "Jacob", "Andersson", "password", Role.CUSTOMER);
-        final User u3 = new User("sandra85", "Sandra", "Berg", "mittlösen", Role.CUSTOMER);
+        final User u3 = new User("sandra85", "Sandra", "Berg", "mittlosen", Role.CUSTOMER);
         final User u4 = new User("Larssa2000", "Lars", "Lerin", "Junior123", Role.PREMIUM);
         final User u5 = new User("HockeyDanne", "Daniel", "Sedin", "qwerty", Role.ADMIN);
         this.userList.add(u1);

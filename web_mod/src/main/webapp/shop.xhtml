@@ -11,10 +11,10 @@
 <h:body>
     <h:graphicImage styleClass="logo" library="images" name="logo.png"/>
     <div class="header">
-        <h:outputLabel styleClass="greet" value="Welcome #{controller.currentUser.firstName} #{controller.currentUser.lastName}"/>
+        <h:outputLabel styleClass="greet" value="Welcome namn"/>
         <div class="header-btn">
             <h:form>
-                <h:commandButton styleClass="logout-btn btn " value="Logout" action="#{controller.logout}"/>
+                <h:commandButton styleClass="logout-btn btn " value="Logout" action="login"/>
             </h:form>
             <h:form>
                 <h:commandLink action="cart">

@@ -15,13 +15,13 @@
 <h:form styleClass="login-form">
     <div class="login-info">
     <h:outputLabel styleClass="login-label" value="Username"/><br/>
-    <h:inputText value="#{controller.username}" styleClass="login-input" required="true"/>
+    <h:inputText value="#{loginController.username}" styleClass="login-input" required="true"/>
 </div>
     <div class="login-info">
     <h:outputLabel styleClass="login-label" value="Password"/><br/>
-    <h:inputSecret value="#{controller.pwd}" styleClass="login-input" required="true"/>
+    <h:inputSecret value="#{loginController.password}" styleClass="login-input" required="true"/>
     </div>
-    <h:commandButton styleClass="btn login-btn" action="#{controller.validateUsernamePassword}" value="Login"/>
+    <h:commandButton styleClass="btn login-btn" action="#{loginController.validateUsernamePassword}" value="Login"/>
 </h:form>
 
 <h:form styleClass="login-form">
