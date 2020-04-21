@@ -1,6 +1,6 @@
 package controller;
 
-import ejb.User;
+import entity.User;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;

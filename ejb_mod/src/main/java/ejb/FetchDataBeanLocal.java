@@ -1,5 +1,7 @@
 package ejb;
 
+import entity.User;
+
 import javax.ejb.Local;
 import java.util.List;
 

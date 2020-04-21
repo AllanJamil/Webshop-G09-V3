@@ -1,9 +1,8 @@
 package controller;
 
-import ejb.DatabaseBean;
 import ejb.DatabaseBeanLocal;
 import ejb.FetchDataBeanLocal;
-import ejb.User;
+import entity.User;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
