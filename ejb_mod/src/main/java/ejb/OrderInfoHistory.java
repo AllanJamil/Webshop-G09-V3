@@ -2,6 +2,8 @@ package ejb;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 @Entity
 public class OrderInfoHistory implements Serializable {
@@ -44,8 +46,17 @@ public class OrderInfoHistory implements Serializable {
      * Metoden räknar ut summan av antalet av en specifik produkt
      * @return: summa
      */
-    public int calculateTotalPrice() {
-        return quantity * record.getPrice();
+    public String calculateTotalPrice() {
+        int sum = quantity * record.getPrice();
+        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("sv","SE"));
+        String formmated = nf.format(sum);
+        return formmated.substring(0,formmated.lastIndexOf(",")) + " SEK";
+    }
+
+    public String formattedQuantity() {
+        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("sv","SE"));
+        String formmated = nf.format(getQuantity());
+        return formmated.substring(0,formmated.lastIndexOf(","));
     }
 
 
