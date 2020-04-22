@@ -1,9 +1,6 @@
 package controller;
 
-import ejb.DatabaseBeanLocal;
-import ejb.LoginBeanLocal;
-import ejb.Role;
-import ejb.User;
+import ejb.*;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -22,10 +19,14 @@ public class LoginController implements Serializable {
     private String firstName;
     private String lastName;
 
+    private UserController userController;
+
     @EJB
-    LoginBeanLocal loginBeanLocal;
+    private static LoggedInUserBeanLocal loggedInUserBean;
     @EJB
-    DatabaseBeanLocal databaseBeanLocal;
+    private static LoginBeanLocal loginBeanLocal;
+    @EJB
+    private static DatabaseBeanLocal databaseBeanLocal;
 
     @PostConstruct
     public void init() {

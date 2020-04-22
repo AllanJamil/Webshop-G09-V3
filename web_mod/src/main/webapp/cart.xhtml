@@ -12,7 +12,7 @@
     <h:outputLabel value="This is your Cart"/>
 
     <h:form>
-        <h:dataTable styleClass="table" value="#{userController.cartItems}" var="item" cellpadding="10">
+        <h:dataTable styleClass="table" value="#{userController.cart}" var="item" cellpadding="10">
             <h:column>
                 <f:facet name="header"></f:facet>
                 <h:graphicImage library="images" name="#{item.record.imgURL}" width="50px" height="50px"/>
