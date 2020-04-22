@@ -48,17 +48,18 @@ public class OrderInfoHistory implements Serializable {
      */
     public String calculateTotalPrice() {
         int sum = quantity * record.getPrice();
-        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("sv","SE"));
-        String formmated = nf.format(sum);
-        return formmated.substring(0,formmated.lastIndexOf(",")) + " SEK";
+        return formatNumbers(sum) + " SEK";
     }
 
     public String formattedQuantity() {
-        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("sv","SE"));
-        String formmated = nf.format(getQuantity());
-        return formmated.substring(0,formmated.lastIndexOf(","));
+        return formatNumbers(getQuantity());
     }
 
+    private String formatNumbers(int number) {
+        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("sv","SE"));
+        String formmated = nf.format(number);
+        return formmated.substring(0,formmated.lastIndexOf(","));
+    }
 
     public OrderHistory getOrder() {
         return order;

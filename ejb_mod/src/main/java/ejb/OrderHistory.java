@@ -48,9 +48,7 @@ public class OrderHistory implements Serializable {
      */
     public String calculateOrderTotal() {
         int sum = items.parallelStream().mapToInt(item -> item.getQuantity() * item.getRecord().getPrice()).sum();
-        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("sv","SE"));
-        String formmated = nf.format(sum);
-        return formmated.substring(0,formmated.lastIndexOf(",")) + " SEK";
+        return formatNumbers(sum) + " SEK";
     }
 
     /**
@@ -59,9 +57,13 @@ public class OrderHistory implements Serializable {
      * @return: antalet produkter i en order
      */
     public String calculateItemsQuantity() {
-        int sum = items.parallelStream().mapToInt(item -> item.getQuantity()).sum();
+        int qty = items.parallelStream().mapToInt(item -> item.getQuantity()).sum();
+        return formatNumbers(qty);
+    }
+
+    private String formatNumbers(int number) {
         NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("sv","SE"));
-        String formmated = nf.format(sum);
+        String formmated = nf.format(number);
         return formmated.substring(0,formmated.lastIndexOf(","));
     }
 
