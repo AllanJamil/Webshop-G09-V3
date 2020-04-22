@@ -25,6 +25,10 @@ public class OrderHistory implements Serializable {
         this.date = date;
     }
 
+    public OrderHistory() {
+
+    }
+
 
     public Long getId() {
         return id;
