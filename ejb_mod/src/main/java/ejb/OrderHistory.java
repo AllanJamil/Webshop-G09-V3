@@ -2,8 +2,10 @@ package ejb;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Entity
 public class OrderHistory implements Serializable {
@@ -41,18 +43,28 @@ public class OrderHistory implements Serializable {
 
     /**
      * Metoden kalkylerar en beställnings total summa
+     *
      * @return: summan för en beställning
      */
-    public int calculateOrderTotal() {
-        return items.parallelStream().mapToInt(item -> item.getQuantity() * item.getRecord().getPrice()).sum();
+    public String calculateOrderTotal() {
+        int sum = items.parallelStream().mapToInt(item -> item.getQuantity() * item.getRecord().getPrice()).sum();
+        return formatNumbers(sum) + " SEK";
     }
 
     /**
      * Metoden räknar ut antalet produkter i en order
+     *
      * @return: antalet produkter i en order
      */
-    public int calculateItemsQuantity() {
-        return items.parallelStream().mapToInt(item -> item.getQuantity()).sum();
+    public String calculateItemsQuantity() {
+        int qty = items.parallelStream().mapToInt(item -> item.getQuantity()).sum();
+        return formatNumbers(qty);
+    }
+
+    private String formatNumbers(int number) {
+        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("sv","SE"));
+        String formmated = nf.format(number);
+        return formmated.substring(0,formmated.lastIndexOf(","));
     }
 
     public void setUser(User user) {

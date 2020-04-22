@@ -1,6 +1,5 @@
 package ejb;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.*;
 import java.util.List;
@@ -35,11 +34,6 @@ public class LoginBean implements LoginBeanLocal {
             }
         }
         return null;
-    }
-
-    @Override
-    public String test(String name) {
-        return "Hello " + name + "!";
     }
 
     public List<User> getAllUsers() {
