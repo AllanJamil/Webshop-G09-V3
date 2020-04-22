@@ -1,4 +1,4 @@
-package controller;
+package ejb;
 
 import ejb.Record;
 

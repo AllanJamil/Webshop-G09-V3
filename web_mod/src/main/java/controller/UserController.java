@@ -1,8 +1,7 @@
 package controller;
 
-import ejb.FetchDataBeanLocal;
+import ejb.*;
 import ejb.Record;
-import ejb.User;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -17,27 +16,18 @@ import java.util.List;
 public class UserController implements Serializable {
 
 
-    private User currentUser;
     private List<Record> recordList;
 
-    private List<CartItem> cartItems;
-    private int cartLength;
 
     @EJB
-    FetchDataBeanLocal fetchDataBeanLocal;
+    FetchDataBeanLocal fetchDataBean;
+
+    @EJB
+    LoggedInUserBeanLocal loggedInUserBean;
 
     @PostConstruct
     public void init() {
-        recordList = fetchDataBeanLocal.getAllRecords();
-        this.cartItems = new ArrayList<>();
-    }
-
-    public User getCurrentUser() {
-        return currentUser;
-    }
-
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
+        recordList = fetchDataBean.getAllRecords();
     }
 
     public List<Record> getRecordList() {
@@ -48,68 +38,41 @@ public class UserController implements Serializable {
         this.recordList = recordList;
     }
 
-    public List<CartItem> getCartItems() {
-        return cartItems;
-    }
-
-    public void setCartItems(List<CartItem> cartItems) {
-        this.cartItems = cartItems;
-    }
-
     public int getCartLength() {
-        return cartLength;
+        return loggedInUserBean.getCartLength();
     }
 
-    public void setCartLength(int cartLength) {
-        this.cartLength = cartLength;
+    public List<CartItem> getCart() {
+       return loggedInUserBean.getCart();
     }
 
-    public void addToCart(int id) {
-        CartItem cartItem = getCartItemFromId(id);
-        if (cartItem != null) {
-            cartItem.setQty(cartItem.getQty() + 1);
-        } else {
-            for (Record record : recordList) {
-                if (record.getId() == id) {
-                    cartItems.add(new CartItem(record));
-                }
-            }
-        }
-        updateCartLength();
-    }
-
-    public void clearCart() {
-        this.cartItems.clear();
-        this.cartLength = 0;
-    }
 
     public String logout() {
-        clearCart();
+        loggedInUserBean.clearCart();
         return "login";
     }
 
+    public void addToCart(int id) {
+        loggedInUserBean.addToCart(id);
+    }
+
+    public void clearCart() {
+        loggedInUserBean.clearCart();
+    }
+
     public String getTotalCartSum() {
-        int result = 0;
-        for (CartItem cartItem:cartItems) {
-            result += cartItem.getTotalPrice();
-        }
-        return String.valueOf(result);
+        return String.valueOf(loggedInUserBean.getTotalCartSum());
     }
 
-    private CartItem getCartItemFromId(int id) {
-        for (CartItem cartItem : cartItems) {
-            if (cartItem.getRecord().getId() == id) {
-                return cartItem;
-            }
-        }
-        return null;
+    public String getUserFullName() {
+       return loggedInUserBean.getUserFullName();
     }
 
-    private void updateCartLength() {
-        int count = 0;
-        for (CartItem cartItem : cartItems) {
-            count += cartItem.getQty();
-        }
-        this.cartLength = count;
+    public LoggedInUserBeanLocal getLoggedInUserBean() {
+        return loggedInUserBean;
+    }
+
+    public void setLoggedInUserBean(LoggedInUserBeanLocal loggedInUserBean) {
+        this.loggedInUserBean = loggedInUserBean;
     }
 }

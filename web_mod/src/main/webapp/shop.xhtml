@@ -11,16 +11,15 @@
 <h:body>
     <h:graphicImage styleClass="logo" library="images" name="logo.png"/>
     <div class="header">
-        <h:outputLabel styleClass="greet" value="Welcome namn"/>
+        <h:outputLabel styleClass="greet" value="Welcome" />
         <div class="header-btn">
             <h:form>
                 <h:commandButton styleClass="logout-btn btn " value="Logout" action="#{userController.logout}"/>
             </h:form>
             <h:form>
                 <h:commandLink action="cart">
-
                     <div class="cart-icon"> <h:graphicImage library="images" name="cart.png" height="30px" width="30px" />
-                    <div class="cart-qty"> #{userController.cartLength} </div>
+                    <div class="cart-qty">#{userController.cartLength}</div>
                     </div>
                 </h:commandLink>
             </h:form>
