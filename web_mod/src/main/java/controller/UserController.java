@@ -3,40 +3,26 @@ package controller;
 import ejb.*;
 import ejb.Record;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Named
 @SessionScoped
 public class UserController implements Serializable {
 
-
-    private List<Record> recordList;
-
-
     @EJB
     FetchDataBeanLocal fetchDataBean;
 
     @EJB
-    LoggedInUserBeanLocal loggedInUserBean;
+    ActiveCustomerBeanLocal loggedInUserBean;
 
-    @PostConstruct
-    public void init() {
-        recordList = fetchDataBean.getAllRecords();
+    public List<Record> getAllRecords() {
+        return fetchDataBean.getAllRecords();
     }
 
-    public List<Record> getRecordList() {
-        return recordList;
-    }
-
-    public void setRecordList(List<Record> recordList) {
-        this.recordList = recordList;
-    }
 
     public int getCartLength() {
         return loggedInUserBean.getCartLength();
@@ -64,15 +50,17 @@ public class UserController implements Serializable {
         return String.valueOf(loggedInUserBean.getTotalCartSum());
     }
 
+    public String shopAfterConfirmation() {
+        clearCart();
+        return "shop";
+    }
+
     public String getUserFullName() {
        return loggedInUserBean.getUserFullName();
     }
 
-    public LoggedInUserBeanLocal getLoggedInUserBean() {
+    public ActiveCustomerBeanLocal getLoggedInUserBean() {
         return loggedInUserBean;
     }
 
-    public void setLoggedInUserBean(LoggedInUserBeanLocal loggedInUserBean) {
-        this.loggedInUserBean = loggedInUserBean;
-    }
 }
