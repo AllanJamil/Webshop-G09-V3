@@ -2,7 +2,7 @@ package ejb;
 
 import java.util.List;
 
-public interface LoggedInUserBeanLocal {
+public interface ActiveCustomerBeanLocal {
 
     void addToCart(int id);
     void clearCart();

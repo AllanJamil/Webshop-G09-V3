@@ -19,14 +19,11 @@ public class LoginController implements Serializable {
     private String firstName;
     private String lastName;
 
-    private UserController userController;
 
     @EJB
-    private static LoggedInUserBeanLocal loggedInUserBean;
+    private LoginBeanLocal loginBeanLocal;
     @EJB
-    private static LoginBeanLocal loginBeanLocal;
-    @EJB
-    private static DatabaseBeanLocal databaseBeanLocal;
+    private DatabaseBeanLocal databaseBeanLocal;
 
     @PostConstruct
     public void init() {
@@ -69,6 +66,7 @@ public class LoginController implements Serializable {
     public String validateUsernamePassword() {
         User user = loginBeanLocal.validateUser(username,password);
         if (user!=null) {
+
             return user.getRole() == Role.ADMIN ? "adminUserOverview" : "shop";
         } else {
             FacesContext.getCurrentInstance().addMessage(

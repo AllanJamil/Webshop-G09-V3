@@ -12,7 +12,7 @@
 
     <h1>ORDER SUMMARY</h1>
     <h:form>
-        <h:dataTable styleClass="table" value="#{controller.orderSummaryList}" var="item" cellpadding="10">
+        <h:dataTable styleClass="table" value="#{userController.cart}" var="item" cellpadding="10">
             <h:column>
                 <f:facet name="header">Title</f:facet>
                 <h:outputText value="#{item.record.title}"/>
@@ -31,8 +31,8 @@
             </h:column>
         </h:dataTable>
 
-        <b><h:outputText style="font-size: larger" value="TOTAL: #{controller.summaryTotal} SEK"/></b> <br/>
-        <h:commandButton value="CONTINUE SHOPPING" action="#{controller.clearOrderSummary()}"/>
+        <b><h:outputText style="font-size: larger" value="TOTAL: #{userController.totalCartSum} SEK"/></b> <br/>
+        <h:commandButton value="CONTINUE SHOPPING" action="#{userController.shopAfterConfirmation}"/>
     </h:form>
 </h:body>
 </html>

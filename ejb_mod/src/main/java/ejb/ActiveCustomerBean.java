@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Stateful(name = "LoggedInUserEJB")
-public class LoggedInUserBean implements LoggedInUserBeanLocal{
+public class ActiveCustomerBean implements ActiveCustomerBeanLocal {
 
     private User currentUser;
     private List<CartItem> cart;
@@ -15,7 +15,7 @@ public class LoggedInUserBean implements LoggedInUserBeanLocal{
     @EJB
     FetchDataBeanLocal fetchDataBean;
 
-    public LoggedInUserBean() {
+    public ActiveCustomerBean() {
         cart = new ArrayList<>();
     }
 
