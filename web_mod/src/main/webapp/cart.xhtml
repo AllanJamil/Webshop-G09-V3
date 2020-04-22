@@ -9,10 +9,21 @@
     <h:outputStylesheet library="css" name="styles.css"/>
 </h:head>
 <h:body>
+    <h:graphicImage styleClass="logo" library="images" name="logo.png"/>
+    <div class="header">
+        <h:outputLabel styleClass="greet"
+                       value="Welcome #{customerController.currentUser.firstName} #{customerController.currentUser.lastName}"/>
+        <div class="header-btn">
+            <h:form>
+                <h:commandButton styleClass="logout-btn btn " value="Logout" action="login"/>
+            </h:form>
+        </div>
+    </div>
+
     <h:outputLabel value="This is your Cart"/>
 
     <h:form>
-        <h:dataTable styleClass="table" value="#{userController.cart}" var="item" cellpadding="10">
+        <h:dataTable styleClass="table" value="#{customerController.cart}" var="item" cellpadding="10">
             <h:column>
                 <f:facet name="header"></f:facet>
                 <h:graphicImage library="images" name="#{item.record.imgURL}" width="50px" height="50px"/>
@@ -36,13 +47,13 @@
         </h:dataTable>
 
 
-        <b><h:outputText style="font-size: larger" value="TOTAL: #{userController.totalCartSum} SEK"/></b> <br/>
+        <b><h:outputText style="font-size: larger" value="TOTAL: #{customerController.totalCartSum} SEK"/></b> <br/>
 
         <h:commandButton value="CHECK OUT" action="confirmation"/>
 
         <h:commandButton value="CONTINUE SHOPPING" action="shop"/>
 
-        <h:commandButton value="EMPTY CART" action="#{userController.clearCart}"/>
+        <h:commandButton value="EMPTY CART" action="#{customerController.clearCart}"/>
     </h:form>
 
     <!--> <h:form>

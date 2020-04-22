@@ -5,6 +5,7 @@ import ejb.*;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
@@ -19,13 +20,14 @@ public class AdminController implements Serializable {
 
     @EJB
     FetchDataBeanLocal fetchDataBeanLocal;
-    // Temporary variable for testing
     @EJB
-    DatabaseBeanLocal databaseBeanLocal;
+    ActiveCustomerBeanLocal activeCustomerBeanLocal;
+    @Inject
+    LoginController loginController;
 
     @PostConstruct
     public void init() {
-        databaseBeanLocal.fillDb();
+        this.currentUser = loginController.getCurrentUser();
     }
 
     public List<User> getCustomerList() {
@@ -48,5 +50,9 @@ public class AdminController implements Serializable {
 
     public List<OrderInfoHistory> getItemList() {
         return itemList;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
     }
 }

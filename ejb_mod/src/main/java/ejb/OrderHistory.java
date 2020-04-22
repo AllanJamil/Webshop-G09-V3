@@ -19,7 +19,6 @@ public class OrderHistory implements Serializable {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User user;
     private Date date;
-    //private LocalDate date;
 
     public OrderHistory(Date date) {
         this.date = date;

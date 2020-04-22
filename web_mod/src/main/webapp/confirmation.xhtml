@@ -9,10 +9,20 @@
     <h:outputStylesheet library="css" name="styles.css"/>
 </h:head>
 <h:body>
+    <h:graphicImage styleClass="logo" library="images" name="logo.png"/>
+    <div class="header">
+        <h:outputLabel styleClass="greet"
+                       value="Welcome #{customerController.currentUser.firstName} #{customerController.currentUser.lastName}"/>
+        <div class="header-btn">
+            <h:form>
+                <h:commandButton styleClass="logout-btn btn " value="Logout" action="login"/>
+            </h:form>
+        </div>
+    </div>
 
     <h1>ORDER SUMMARY</h1>
     <h:form>
-        <h:dataTable styleClass="table" value="#{userController.cart}" var="item" cellpadding="10">
+        <h:dataTable styleClass="table" value="#{customerController.cart}" var="item" cellpadding="10">
             <h:column>
                 <f:facet name="header">Title</f:facet>
                 <h:outputText value="#{item.record.title}"/>
@@ -31,8 +41,8 @@
             </h:column>
         </h:dataTable>
 
-        <b><h:outputText style="font-size: larger" value="TOTAL: #{userController.totalCartSum} SEK"/></b> <br/>
-        <h:commandButton value="CONTINUE SHOPPING" action="#{userController.shopAfterConfirmation}"/>
+        <b><h:outputText style="font-size: larger" value="TOTAL: #{customerController.totalCartSum} SEK"/></b> <br/>
+        <h:commandButton value="CONTINUE SHOPPING" action="#{customerController.shopAfterConfirmation}"/>
     </h:form>
 </h:body>
 </html>

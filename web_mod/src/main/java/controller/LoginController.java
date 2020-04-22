@@ -18,7 +18,7 @@ public class LoginController implements Serializable {
     private String password;
     private String firstName;
     private String lastName;
-
+    private User currentUser;
 
     @EJB
     private LoginBeanLocal loginBeanLocal;
@@ -64,9 +64,9 @@ public class LoginController implements Serializable {
     }
 
     public String validateUsernamePassword() {
-        User user = loginBeanLocal.validateUser(username,password);
-        if (user!=null) {
-
+        User user = loginBeanLocal.validateUser(username, password);
+        if (user != null) {
+            this.currentUser = user;
             return user.getRole() == Role.ADMIN ? "adminUserOverview" : "shop";
         } else {
             FacesContext.getCurrentInstance().addMessage(
@@ -82,17 +82,24 @@ public class LoginController implements Serializable {
     public String registerUser() {
         User user = new User(this.username, this.firstName, this.lastName, this.password, Role.CUSTOMER);
 
-            if (loginBeanLocal.usernameExist(user.getUserName())) {
-                FacesContext.getCurrentInstance().addMessage(
-                        null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN,
-                                "Username is already taken",
-                                "Please enter another username"));
-                return "registerUser";
-            } else {
-                loginBeanLocal.addUser(user);
-                return "shop";
+        if (loginBeanLocal.usernameExist(user.getUserName())) {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Username is already taken",
+                            "Please enter another username"));
+            return "registerUser";
+        } else {
+            loginBeanLocal.addUser(user);
+            return "shop";
         }
     }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
 }

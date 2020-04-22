@@ -29,7 +29,7 @@ public class ActiveCustomerBean implements ActiveCustomerBeanLocal {
     }
 
     public User getCurrentUser() {
-        return null;
+        return currentUser;
     }
 
 
@@ -94,4 +94,5 @@ public class ActiveCustomerBean implements ActiveCustomerBeanLocal {
     public String getUserFullName() {
         return currentUser.getFirstName() + " " + currentUser.getLastName();
     }
+
 }

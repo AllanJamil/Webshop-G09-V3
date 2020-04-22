@@ -13,4 +13,5 @@ public interface ActiveCustomerBeanLocal {
     void setCurrentUser(User currentUser);
     int getCartLength();
     List<CartItem> getCart();
+    User getCurrentUser();
 }

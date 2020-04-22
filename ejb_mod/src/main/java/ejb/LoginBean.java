@@ -36,7 +36,7 @@ public class LoginBean implements LoginBeanLocal {
         return null;
     }
 
-    public List<User> getAllUsers() {
+    private List<User> getAllUsers() {
     return entityManager.createQuery("SELECT o FROM User o", User.class).getResultList();
     }
 

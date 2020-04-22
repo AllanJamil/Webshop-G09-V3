@@ -3,21 +3,31 @@ package controller;
 import ejb.*;
 import ejb.Record;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
 @Named
 @SessionScoped
-public class UserController implements Serializable {
+public class CustomerController implements Serializable {
+
+    private User currentUser;
 
     @EJB
     FetchDataBeanLocal fetchDataBean;
-
     @EJB
     ActiveCustomerBeanLocal loggedInUserBean;
+    @Inject
+    LoginController loginController;
+
+    @PostConstruct
+    public void ini() {
+        this.currentUser = loginController.getCurrentUser();
+    }
 
     public List<Record> getAllRecords() {
         return fetchDataBean.getAllRecords();
@@ -63,4 +73,7 @@ public class UserController implements Serializable {
         return loggedInUserBean;
     }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
 }
