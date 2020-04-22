@@ -1,6 +1,5 @@
 package controller;
 
-import ejb.*;
 import ejb.Record;
 
 public class CartItem {

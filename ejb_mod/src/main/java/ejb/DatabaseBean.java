@@ -4,6 +4,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,9 +66,9 @@ public class DatabaseBean implements DatabaseBeanLocal{
         orderInfoHistoryList3.add(oi6);
 
         //ORDER
-        OrderHistory o1 = new OrderHistory();
-        OrderHistory o2 = new OrderHistory();
-        OrderHistory o3 = new OrderHistory();
+        OrderHistory o1 = new OrderHistory(Date.valueOf(LocalDate.of(2020,1,3)));
+        OrderHistory o2 = new OrderHistory(Date.valueOf(LocalDate.of(2019,11,15)));
+        OrderHistory o3 = new OrderHistory(Date.valueOf(LocalDate.of(2019,8,27)));
         o1.setItems(orderInfoHistoryList1);
         o2.setItems(orderInfoHistoryList2);
         o3.setItems(orderInfoHistoryList3);

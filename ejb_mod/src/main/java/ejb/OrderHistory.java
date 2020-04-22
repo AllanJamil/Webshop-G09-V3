@@ -2,6 +2,7 @@ package ejb;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +18,11 @@ public class OrderHistory implements Serializable {
     private List<OrderInfoHistory> items = new ArrayList<>();
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User user;
+    private Date date;
     //private LocalDate date;
 
-    public OrderHistory(/*LocalDate date*/) {
-        //this.date = date;
+    public OrderHistory(Date date) {
+        this.date = date;
     }
 
 
@@ -73,5 +75,9 @@ public class OrderHistory implements Serializable {
 
     public User getUser() {
         return user;
+    }
+
+    public String getDate() {
+        return date.toString();
     }
 }
