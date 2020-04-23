@@ -14,6 +14,7 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
     @EJB
     ReadDataBeanLocal fetchDataBean;
 
+
     public ShoppingCartBean() {
         cart = new ArrayList<>();
     }
@@ -71,13 +72,16 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
         this.cartLength = count;
     }
 
-    public int getTotalCartSum() {
+
+    public int getTotalCartSum(User user) {
         int result = 0;
         for (CartItem cartItem:cart) {
             result += cartItem.getTotalPrice();
         }
-        return result;
+        if (user.getRole() == Role.PREMIUM) {
+        result = (int) (result * 0.9);
     }
+        return result;
 
-
+    }
 }

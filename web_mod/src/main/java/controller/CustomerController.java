@@ -59,7 +59,8 @@ public class CustomerController implements Serializable {
     }
 
     public String getTotalCartSum() {
-        return String.valueOf(shoppingCart.getTotalCartSum());
+        int totalCartSum = shoppingCart.getTotalCartSum(currentUserBeanLocal.getCurrentUser());
+        return String.valueOf(totalCartSum);
     }
 
     public String shopAfterConfirmation() {
