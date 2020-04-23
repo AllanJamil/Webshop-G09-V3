@@ -101,6 +101,7 @@ public class LoginController implements Serializable {
             return "registerUser";
         } else {
             loginBeanLocal.addUser(user);
+            currentUserBeanLocal.setCurrentUser(user);
             return "shop";
         }
     }
