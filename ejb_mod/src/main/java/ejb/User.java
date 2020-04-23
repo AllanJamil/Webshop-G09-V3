@@ -79,12 +79,16 @@ public class User implements Serializable {
     }
 
 
-    public String getTotalSpent() {
-        int sum = orders.parallelStream().mapToInt(order -> order.getItems().parallelStream()
-                .mapToInt(item -> item.getQuantity() * item.getRecord().getPrice()).sum()).sum();
+    public String getFormattedTotalSpent() {
+        int sum = getTotalSpent();
         NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("sv","SE"));
         String formmated = nf.format(sum);
         return formmated.substring(0,formmated.lastIndexOf(",")) + " SEK";
+    }
+
+    public int getTotalSpent() {
+        return orders.parallelStream().mapToInt(order -> order.getItems().parallelStream()
+                .mapToInt(item -> item.getQuantity() * item.getRecord().getPrice()).sum()).sum();
     }
 
     public List<OrderHistory> getOrders() {
