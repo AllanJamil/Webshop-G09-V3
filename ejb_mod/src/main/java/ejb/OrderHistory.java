@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -20,8 +21,8 @@ public class OrderHistory implements Serializable {
     private User user;
     private Date date;
 
-    public OrderHistory(User user, List<OrderInfoHistory> items, Date date) {
-        this.date = date;
+    public OrderHistory(User user, List<OrderInfoHistory> items, LocalDate date) {
+        this.date = Date.valueOf(date);
         this.user = user;
         this.items = items;
     }

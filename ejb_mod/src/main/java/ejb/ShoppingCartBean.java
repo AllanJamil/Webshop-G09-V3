@@ -8,6 +8,7 @@ import java.util.List;
 @Stateful(name = "LoggedInUserEJB")
 public class ShoppingCartBean implements ShoppingCartBeanLocal {
 
+
     private List<CartItem> cart;
     private int cartLength;
 
@@ -62,7 +63,7 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
             }
         }
         return null;
-    }
+}
     @Override
     public void updateCartLength() {
         int count = 0;
