@@ -19,9 +19,9 @@ public class AdminController implements Serializable {
     private List<OrderInfoHistory> itemList;
 
     @EJB
-    FetchDataBeanLocal fetchDataBeanLocal;
+    ReadDataBeanLocal readDataBeanLocal;
     @EJB
-    ActiveCustomerBeanLocal activeCustomerBeanLocal;
+    ShoppingCartBeanLocal activeCustomerBeanLocal;
     @Inject
     LoginController loginController;
 
@@ -31,11 +31,11 @@ public class AdminController implements Serializable {
     }
 
     public List<User> getCustomerList() {
-        return this.customerList = fetchDataBeanLocal.fetchAllCustomers();
+        return this.customerList = readDataBeanLocal.fetchAllCustomers();
     }
 
     public String viewCustomerOrder(Long id) {
-        this.orderHistoryList = fetchDataBeanLocal.fetchOrderByCustomerId(id);
+        this.orderHistoryList = readDataBeanLocal.fetchOrderByCustomerId(id);
         return "adminOrderOverview";
     }
 
@@ -44,7 +44,7 @@ public class AdminController implements Serializable {
     }
 
     public String viewItemsInOrder(Long id) {
-        this.itemList = fetchDataBeanLocal.fetchItemsByOrderId(id);
+        this.itemList = readDataBeanLocal.fetchItemsByOrderId(id);
         return "adminItemOverview";
     }
 

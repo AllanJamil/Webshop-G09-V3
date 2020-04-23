@@ -6,32 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Stateful(name = "LoggedInUserEJB")
-public class ActiveCustomerBean implements ActiveCustomerBeanLocal {
+public class ShoppingCartBean implements ShoppingCartBeanLocal {
 
-    private User currentUser;
     private List<CartItem> cart;
     private int cartLength;
 
     @EJB
-    FetchDataBeanLocal fetchDataBean;
+    ReadDataBeanLocal fetchDataBean;
 
-    public ActiveCustomerBean() {
+    public ShoppingCartBean() {
         cart = new ArrayList<>();
-    }
-
-    @Override
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
     }
 
     public void setCart(List<CartItem> cart) {
         this.cart = cart;
     }
-
-    public User getCurrentUser() {
-        return currentUser;
-    }
-
 
     public List<CartItem> getCart() {
         return this.cart;
@@ -90,9 +79,5 @@ public class ActiveCustomerBean implements ActiveCustomerBeanLocal {
         return result;
     }
 
-    @Override
-    public String getUserFullName() {
-        return currentUser.getFirstName() + " " + currentUser.getLastName();
-    }
 
 }

@@ -12,7 +12,7 @@
     <h:graphicImage styleClass="logo" library="images" name="logo.png"/>
     <div class="header">
         <h:outputLabel styleClass="greet"
-                       value="Welcome #{customerController.currentUser.firstName} #{customerController.currentUser.lastName}"/>
+                       value="Welcome #{customerController.userFullName}"/>
         <div class="header-btn">
             <h:form>
                 <h:commandButton styleClass="logout-btn btn " value="Logout" action="login"/>

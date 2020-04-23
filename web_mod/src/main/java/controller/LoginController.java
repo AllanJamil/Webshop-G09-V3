@@ -23,11 +23,13 @@ public class LoginController implements Serializable {
     @EJB
     private LoginBeanLocal loginBeanLocal;
     @EJB
-    private DatabaseBeanLocal databaseBeanLocal;
+    private CreateDataBeanLocal createDataBeanLocal;
+    @EJB
+    CurrentUserLocal currentUserLocal;
 
     @PostConstruct
     public void init() {
-        databaseBeanLocal.fillDb();
+        createDataBeanLocal.fillDb();
     }
 
 
@@ -63,10 +65,18 @@ public class LoginController implements Serializable {
         this.lastName = lastName;
     }
 
+    public CurrentUserLocal getCurrentUserLocal() {
+        return currentUserLocal;
+    }
+
+    public void setCurrentUserLocal(CurrentUserLocal currentUserLocal) {
+        this.currentUserLocal = currentUserLocal;
+    }
+
     public String validateUsernamePassword() {
         User user = loginBeanLocal.validateUser(username, password);
         if (user != null) {
-            this.currentUser = user;
+            currentUserLocal.setCurrentUser(user);
             return user.getRole() == Role.ADMIN ? "adminUserOverview" : "shop";
         } else {
             FacesContext.getCurrentInstance().addMessage(

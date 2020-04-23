@@ -3,15 +3,14 @@ package ejb;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Stateless(name = "DatabaseEJB")
-public class DatabaseBean implements DatabaseBeanLocal{
-    public DatabaseBean() {
+public class CreateDataBean implements CreateDataBeanLocal {
+    public CreateDataBean() {
     }
     @PersistenceContext(name = "webshopUnit")
     EntityManager em;

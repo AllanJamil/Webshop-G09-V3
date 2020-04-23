@@ -7,12 +7,12 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Stateless(name = "FetchDataEJB")
-public class FetchDataBean implements FetchDataBeanLocal {
+public class ReadDataBean implements ReadDataBeanLocal {
 
     @PersistenceContext(name = "webshopUnit")
     EntityManager em;
 
-    public FetchDataBean() {
+    public ReadDataBean() {
     }
 
     @Override

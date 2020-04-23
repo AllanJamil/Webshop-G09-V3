@@ -15,18 +15,20 @@ import java.util.List;
 @SessionScoped
 public class CustomerController implements Serializable {
 
-    private User currentUser;
 
     @EJB
-    FetchDataBeanLocal fetchDataBean;
+    ReadDataBeanLocal fetchDataBean;
     @EJB
-    ActiveCustomerBeanLocal loggedInUserBean;
+    ShoppingCartBeanLocal shoppingCart;
+
     @Inject
     LoginController loginController;
 
+    CurrentUserLocal currentUserLocal;
+
     @PostConstruct
     public void ini() {
-        this.currentUser = loginController.getCurrentUser();
+        this.currentUserLocal = loginController.getCurrentUserLocal();
     }
 
     public List<Record> getAllRecords() {
@@ -35,29 +37,29 @@ public class CustomerController implements Serializable {
 
 
     public int getCartLength() {
-        return loggedInUserBean.getCartLength();
+        return shoppingCart.getCartLength();
     }
 
     public List<CartItem> getCart() {
-       return loggedInUserBean.getCart();
+        return shoppingCart.getCart();
     }
 
 
     public String logout() {
-        loggedInUserBean.clearCart();
+        shoppingCart.clearCart();
         return "login";
     }
 
     public void addToCart(int id) {
-        loggedInUserBean.addToCart(id);
+        shoppingCart.addToCart(id);
     }
 
     public void clearCart() {
-        loggedInUserBean.clearCart();
+        shoppingCart.clearCart();
     }
 
     public String getTotalCartSum() {
-        return String.valueOf(loggedInUserBean.getTotalCartSum());
+        return String.valueOf(shoppingCart.getTotalCartSum());
     }
 
     public String shopAfterConfirmation() {
@@ -66,14 +68,7 @@ public class CustomerController implements Serializable {
     }
 
     public String getUserFullName() {
-       return loggedInUserBean.getUserFullName();
+        return currentUserLocal.getUserFullName();
     }
 
-    public ActiveCustomerBeanLocal getLoggedInUserBean() {
-        return loggedInUserBean;
-    }
-
-    public User getCurrentUser() {
-        return currentUser;
-    }
 }
