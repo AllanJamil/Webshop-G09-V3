@@ -13,22 +13,23 @@ import java.util.List;
 @Named
 @SessionScoped
 public class AdminController implements Serializable {
-    private User currentUser;
     private List<User> customerList;
     private List<OrderHistory> orderHistoryList;
     private List<OrderInfoHistory> itemList;
 
     @EJB
     ReadDataBeanLocal readDataBeanLocal;
-    @EJB
-    ShoppingCartBeanLocal activeCustomerBeanLocal;
+
     @Inject
     LoginController loginController;
 
+    CurrentUserBeanLocal currentUserBeanLocal;
+
     @PostConstruct
     public void init() {
-        this.currentUser = loginController.getCurrentUser();
+        this.currentUserBeanLocal = loginController.getCurrentUserBeanLocal();
     }
+
 
     public List<User> getCustomerList() {
         return this.customerList = readDataBeanLocal.fetchAllCustomers();
@@ -52,7 +53,7 @@ public class AdminController implements Serializable {
         return itemList;
     }
 
-    public User getCurrentUser() {
-        return currentUser;
+    public String getUserFullName() {
+        return currentUserBeanLocal.getUserFullName();
     }
 }

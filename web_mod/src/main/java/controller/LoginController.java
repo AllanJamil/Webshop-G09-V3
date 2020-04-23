@@ -25,7 +25,7 @@ public class LoginController implements Serializable {
     @EJB
     private CreateDataBeanLocal createDataBeanLocal;
     @EJB
-    CurrentUserLocal currentUserLocal;
+    CurrentUserBeanLocal currentUserBeanLocal;
 
     @PostConstruct
     public void init() {
@@ -65,18 +65,18 @@ public class LoginController implements Serializable {
         this.lastName = lastName;
     }
 
-    public CurrentUserLocal getCurrentUserLocal() {
-        return currentUserLocal;
+    public CurrentUserBeanLocal getCurrentUserBeanLocal() {
+        return currentUserBeanLocal;
     }
 
-    public void setCurrentUserLocal(CurrentUserLocal currentUserLocal) {
-        this.currentUserLocal = currentUserLocal;
+    public void setCurrentUserBeanLocal(CurrentUserBeanLocal currentUserBeanLocal) {
+        this.currentUserBeanLocal = currentUserBeanLocal;
     }
 
     public String validateUsernamePassword() {
         User user = loginBeanLocal.validateUser(username, password);
         if (user != null) {
-            currentUserLocal.setCurrentUser(user);
+            currentUserBeanLocal.setCurrentUser(user);
             return user.getRole() == Role.ADMIN ? "adminUserOverview" : "shop";
         } else {
             FacesContext.getCurrentInstance().addMessage(

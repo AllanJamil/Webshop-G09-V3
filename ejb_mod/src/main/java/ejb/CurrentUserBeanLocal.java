@@ -1,6 +1,6 @@
 package ejb;
 
-public interface CurrentUserLocal {
+public interface CurrentUserBeanLocal {
     String getUserFullName();
     void setCurrentUser(User currentUser);
 

@@ -3,8 +3,8 @@ package ejb;
 import javax.ejb.Stateful;
 
 @Stateful(name = "CurrentUserBeanEJB")
-public class CurrentUserBean implements CurrentUserLocal{
-    public CurrentUserBean() {
+public class CurrentUserBeanBean implements CurrentUserBeanLocal {
+    public CurrentUserBeanBean() {
     }
 
     private User currentUser;

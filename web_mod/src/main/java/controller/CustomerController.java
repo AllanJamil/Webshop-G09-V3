@@ -24,11 +24,11 @@ public class CustomerController implements Serializable {
     @Inject
     LoginController loginController;
 
-    CurrentUserLocal currentUserLocal;
+    CurrentUserBeanLocal currentUserBeanLocal;
 
     @PostConstruct
     public void ini() {
-        this.currentUserLocal = loginController.getCurrentUserLocal();
+        this.currentUserBeanLocal = loginController.getCurrentUserBeanLocal();
     }
 
     public List<Record> getAllRecords() {
@@ -68,7 +68,7 @@ public class CustomerController implements Serializable {
     }
 
     public String getUserFullName() {
-        return currentUserLocal.getUserFullName();
+        return currentUserBeanLocal.getUserFullName();
     }
 
 }
