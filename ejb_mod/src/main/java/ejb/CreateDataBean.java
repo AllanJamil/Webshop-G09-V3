@@ -86,11 +86,6 @@ public class CreateDataBean implements CreateDataBeanLocal {
      */
     @Override
     public void addNewOrder(User user, List<OrderInfoHistory> itemList) {
-        OrderHistory order = new OrderHistory(user,itemList,LocalDate.now());
-        for (OrderInfoHistory oi: itemList) {
-            oi.setOrder(order);
-        }
-        user.getOrders().add(order);
-        em.persist(user);
+        addOrder(user,itemList,LocalDate.now());
     }
 }
