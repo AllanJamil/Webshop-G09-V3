@@ -20,8 +20,10 @@ public class OrderHistory implements Serializable {
     private User user;
     private Date date;
 
-    public OrderHistory(Date date) {
+    public OrderHistory(User user, List<OrderInfoHistory> items, Date date) {
         this.date = date;
+        this.user = user;
+        this.items = items;
     }
 
     public OrderHistory() {
