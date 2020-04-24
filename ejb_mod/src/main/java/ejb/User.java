@@ -18,6 +18,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<OrderHistory> orders = new ArrayList<>();
 
@@ -87,6 +88,12 @@ public class User implements Serializable {
     public int getTotalSpent() {
         return orders.parallelStream().mapToInt(order -> order.getItems().parallelStream()
                 .mapToInt(item -> item.getQuantity() * item.getRecord().getPrice()).sum()).sum();
+    }
+
+    public void upgradeToPremium(){
+        if(this.role == Role.CUSTOMER && this.getTotalSpent() >= 500_000){
+            this.setRole(Role.PREMIUM);
+        }
     }
 
     public List<OrderHistory> getOrders() {

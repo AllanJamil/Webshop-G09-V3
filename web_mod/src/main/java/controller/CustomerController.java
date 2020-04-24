@@ -8,8 +8,11 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.print.attribute.standard.Severity;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Named
 @SessionScoped
@@ -25,6 +28,7 @@ public class CustomerController implements Serializable {
     @Inject
     private LoginController loginController;
 
+    @EJB
     private CurrentUserBeanLocal currentUserBeanLocal;
 
     @PostConstruct
@@ -79,6 +83,9 @@ public class CustomerController implements Serializable {
         } else {
             createDataBean.addNewOrder(currentUserBeanLocal.getCurrentUser(), shoppingCart.getCartAsOrderInfoList());
             shoppingCart.clearCart();
+            User user = fetchDataBean.fetchUserById(currentUserBeanLocal.getCurrentUser().getId());
+            user.upgradeToPremium();
+            Logger.getLogger(User.class.getName()).log(Level.INFO, String.valueOf(user.getTotalSpent()));
             return "confirmation";
         }
     }

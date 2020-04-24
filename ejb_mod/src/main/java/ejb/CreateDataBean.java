@@ -62,7 +62,7 @@ public class CreateDataBean implements CreateDataBeanLocal {
             orderInfoHistoryList2.add(new OrderInfoHistory(r2, 150));
             orderInfoHistoryList2.add(new OrderInfoHistory(r4, 15));
             orderInfoHistoryList2.add(new OrderInfoHistory(r3, 15));
-            orderInfoHistoryList3.add(new OrderInfoHistory(r1, 15));
+            orderInfoHistoryList3.add(new OrderInfoHistory(r1, 3355));
 
             //ORDER
             addOrder(u4,orderInfoHistoryList1,LocalDate.of(2020, 1, 3));
@@ -95,9 +95,12 @@ public class CreateDataBean implements CreateDataBeanLocal {
             oi.setOrder(order);
         }
         order.setItems(itemList);
+        // TODO Fix bug that emerges from persisting User to that the Premium Can be saved
+        // em.persist(user);
         order.setUser(user);
         em.persist(order);
+
+        // TODO Remove SOUT after success with persisting User
+        System.out.println("11111111"+order.getUser().getRole());
     }
-
-
 }

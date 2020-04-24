@@ -40,4 +40,13 @@ public class ReadDataBean implements ReadDataBeanLocal {
        return em.createQuery("SELECT o FROM Record o", Record.class).getResultList();
     }
 
+    @Override
+    public User fetchUserById(Long id) {
+        return em.createQuery("SELECT u FROM User u WHERE u.id = :id",User.class).setParameter("id",id).getSingleResult();
+    }
+
+    public void saveUser(User user){
+        em.persist(user);
+    }
+
 }
