@@ -15,7 +15,7 @@ public class CreateDataBean implements CreateDataBeanLocal {
     public CreateDataBean() {
     }
     @PersistenceContext(name = "webshopUnit")
-    EntityManager em;
+    private EntityManager em;
 
     @Override
     public void fillDb() {

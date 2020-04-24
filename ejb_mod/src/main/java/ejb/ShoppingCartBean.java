@@ -14,7 +14,7 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
     private List<OrderInfoHistory> orderInfoHistoryList;
 
     @EJB
-    ReadDataBeanLocal fetchDataBean;
+    private ReadDataBeanLocal fetchDataBean;
 
 
     public ShoppingCartBean() {

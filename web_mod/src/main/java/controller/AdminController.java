@@ -18,12 +18,12 @@ public class AdminController implements Serializable {
     private List<OrderInfoHistory> itemList;
 
     @EJB
-    ReadDataBeanLocal readDataBeanLocal;
+    private ReadDataBeanLocal readDataBeanLocal;
 
     @Inject
-    LoginController loginController;
+    private LoginController loginController;
 
-    CurrentUserBeanLocal currentUserBeanLocal;
+    private CurrentUserBeanLocal currentUserBeanLocal;
 
     @PostConstruct
     public void init() {

@@ -24,7 +24,7 @@ public class LoginController implements Serializable {
     @EJB
     private CreateDataBeanLocal createDataBeanLocal;
     @EJB
-    CurrentUserBeanLocal currentUserBeanLocal;
+    private CurrentUserBeanLocal currentUserBeanLocal;
 
     @PostConstruct
     public void init() {

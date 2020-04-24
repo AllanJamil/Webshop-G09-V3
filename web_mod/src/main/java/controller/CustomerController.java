@@ -16,16 +16,16 @@ import java.util.List;
 public class CustomerController implements Serializable {
 
     @EJB
-    CreateDataBeanLocal createDataBean;
+    private CreateDataBeanLocal createDataBean;
     @EJB
-    ReadDataBeanLocal fetchDataBean;
+    private ReadDataBeanLocal fetchDataBean;
     @EJB
-    ShoppingCartBeanLocal shoppingCart;
+    private ShoppingCartBeanLocal shoppingCart;
 
     @Inject
-    LoginController loginController;
+    private LoginController loginController;
 
-    CurrentUserBeanLocal currentUserBeanLocal;
+    private CurrentUserBeanLocal currentUserBeanLocal;
 
     @PostConstruct
     public void ini() {
@@ -64,7 +64,7 @@ public class CustomerController implements Serializable {
         return String.valueOf(totalCartSum);
     }
 
-    public String shopAfterConfirmation() {
+    public String shopAfterEmptyCart() {
         clearCart();
         return "shop";
     }
