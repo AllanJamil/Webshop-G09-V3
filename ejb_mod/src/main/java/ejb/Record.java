@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class Record implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String artist;
     private String title;
@@ -60,5 +60,6 @@ public class Record implements Serializable {
     public void setImgURL(String imgURL) {
         this.imgURL = imgURL;
     }
+
 }
 

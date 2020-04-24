@@ -15,7 +15,8 @@ import java.util.List;
 @SessionScoped
 public class CustomerController implements Serializable {
 
-
+    @EJB
+    CreateDataBeanLocal createDataBean;
     @EJB
     ReadDataBeanLocal fetchDataBean;
     @EJB
@@ -72,4 +73,17 @@ public class CustomerController implements Serializable {
         return currentUserBeanLocal.getUserFullName();
     }
 
+    public String ConfirmOrder() {
+        createDataBean.addNewOrder(currentUserBeanLocal.getCurrentUser(),shoppingCart.getCartAsOrderInfoList());
+        shoppingCart.clearCart();
+        return "confirmation";
+    }
+
+    public List<OrderInfoHistory> getOrderInfoList() {
+    return shoppingCart.getOrderInfoHistoryList();
+    }
+
+    public int getTotPriceOrderInfoList() {
+       return shoppingCart.getTotPriceFromOrderInfoList();
+    }
 }

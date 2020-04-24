@@ -18,7 +18,6 @@ public class LoginController implements Serializable {
     private String password;
     private String firstName;
     private String lastName;
-    private User currentUser;
 
     @EJB
     private LoginBeanLocal loginBeanLocal;
@@ -106,11 +105,4 @@ public class LoginController implements Serializable {
         }
     }
 
-    public User getCurrentUser() {
-        return currentUser;
-    }
-
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
-    }
 }

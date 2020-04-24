@@ -49,7 +49,7 @@
 
         <b><h:outputText style="font-size: larger" value="TOTAL: #{customerController.totalCartSum} SEK"/></b> <br/>
 
-        <h:commandButton value="CHECK OUT" action="confirmation"/>
+        <h:commandButton value="CHECK OUT" action="#{customerController.ConfirmOrder}"/>
 
         <h:commandButton value="CONTINUE SHOPPING" action="shop"/>
 

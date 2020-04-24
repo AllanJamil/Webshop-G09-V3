@@ -1,7 +1,9 @@
 package ejb;
 
 import javax.ejb.Stateless;
+import javax.jms.Session;
 import javax.persistence.EntityManager;
+import javax.persistence.FlushModeType;
 import javax.persistence.PersistenceContext;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -75,8 +77,10 @@ public class CreateDataBean implements CreateDataBeanLocal {
         for (OrderInfoHistory oi: itemList) {
             oi.setOrder(order);
         }
+        order.setItems(itemList);
         user.getOrders().add(order);
-        em.persist(user);
+        order.setUser(user);
+        em.persist(order);
     }
 
     /**
@@ -86,6 +90,14 @@ public class CreateDataBean implements CreateDataBeanLocal {
      */
     @Override
     public void addNewOrder(User user, List<OrderInfoHistory> itemList) {
-        addOrder(user,itemList,LocalDate.now());
+        OrderHistory order = new OrderHistory(user,itemList,LocalDate.now());
+        for (OrderInfoHistory oi: itemList) {
+            oi.setOrder(order);
+        }
+        order.setItems(itemList);
+        order.setUser(user);
+        em.persist(order);
     }
+
+
 }

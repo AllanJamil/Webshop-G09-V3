@@ -11,4 +11,8 @@ public interface ShoppingCartBeanLocal {
     int getTotalCartSum(User user);
     int getCartLength();
     List<CartItem> getCart();
+    List<OrderInfoHistory> getCartAsOrderInfoList();
+    List<OrderInfoHistory> getOrderInfoHistoryList();
+    int getTotPriceFromOrderInfoList();
+
 }

@@ -13,11 +13,11 @@ import java.util.Locale;
 public class OrderHistory implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "order")
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "order")
     private List<OrderInfoHistory> items = new ArrayList<>();
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne()
     private User user;
     private Date date;
 
@@ -71,9 +71,9 @@ public class OrderHistory implements Serializable {
     }
 
     private String formatNumbers(int number) {
-        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("sv","SE"));
+        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("sv", "SE"));
         String formmated = nf.format(number);
-        return formmated.substring(0,formmated.lastIndexOf(","));
+        return formmated.substring(0, formmated.lastIndexOf(","));
     }
 
     public void setUser(User user) {
@@ -87,4 +87,5 @@ public class OrderHistory implements Serializable {
     public String getDate() {
         return date.toString();
     }
+
 }

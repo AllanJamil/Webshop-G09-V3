@@ -12,5 +12,4 @@ public interface ReadDataBeanLocal {
     List<OrderInfoHistory> fetchItemsByOrderId(Long id);
 
     List<Record> getAllRecords();
-
 }

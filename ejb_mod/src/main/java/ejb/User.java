@@ -16,7 +16,7 @@ public class User implements Serializable {
     private String lastName;
     private String password;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<OrderHistory> orders = new ArrayList<>();
@@ -98,5 +98,7 @@ public class User implements Serializable {
     public void setOrders(List<OrderHistory> orders) {
         this.orders = orders;
     }
+
+
 
 }

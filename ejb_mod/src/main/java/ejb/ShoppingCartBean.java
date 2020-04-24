@@ -11,6 +11,7 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
 
     private List<CartItem> cart;
     private int cartLength;
+    private List<OrderInfoHistory> orderInfoHistoryList;
 
     @EJB
     ReadDataBeanLocal fetchDataBean;
@@ -34,6 +35,14 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
 
     public void setCartLength(int cartLength) {
         this.cartLength = cartLength;
+    }
+
+    public List<OrderInfoHistory> getOrderInfoHistoryList() {
+        return orderInfoHistoryList;
+    }
+
+    public void setOrderInfoHistoryList(List<OrderInfoHistory> orderInfoHistoryList) {
+        this.orderInfoHistoryList = orderInfoHistoryList;
     }
 
     @Override
@@ -84,5 +93,26 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
     }
         return result;
 
+    }
+    public List<OrderInfoHistory> getCartAsOrderInfoList() {
+
+        this.orderInfoHistoryList = new ArrayList<>();
+
+        for (CartItem cartItem:this.cart) {
+            OrderInfoHistory orderInfoHistory = new OrderInfoHistory();
+            orderInfoHistory.setRecord(cartItem.getRecord());
+            orderInfoHistory.setQuantity(cartItem.getQty());
+            orderInfoHistoryList.add(orderInfoHistory);
+        }
+
+        return this.orderInfoHistoryList;
+    }
+
+    public int getTotPriceFromOrderInfoList() {
+        int sum = 0;
+        for (OrderInfoHistory orderInfoHistory: this.orderInfoHistoryList) {
+            sum += orderInfoHistory.getTotalPrice();
+        }
+        return sum;
     }
 }

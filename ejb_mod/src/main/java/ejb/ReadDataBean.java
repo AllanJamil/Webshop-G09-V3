@@ -39,4 +39,5 @@ public class ReadDataBean implements ReadDataBeanLocal {
     public List<Record> getAllRecords() {
        return em.createQuery("SELECT o FROM Record o", Record.class).getResultList();
     }
+
 }

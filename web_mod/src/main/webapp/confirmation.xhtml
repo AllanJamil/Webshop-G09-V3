@@ -22,7 +22,7 @@
 
     <h1>ORDER SUMMARY</h1>
     <h:form>
-        <h:dataTable styleClass="table" value="#{customerController.cart}" var="item" cellpadding="10">
+        <h:dataTable styleClass="table" value="#{customerController.orderInfoList}" var="item" cellpadding="10">
             <h:column>
                 <f:facet name="header">Title</f:facet>
                 <h:outputText value="#{item.record.title}"/>
@@ -33,15 +33,19 @@
             </h:column>
             <h:column>
                 <f:facet name="header">Quantity</f:facet>
-                <h:outputText value="#{item.qty}"/>
+                <h:outputText value="#{item.quantity}"/>
             </h:column>
             <h:column>
-                <f:facet name="header">Price</f:facet>
+                <f:facet name="header">CD-Price</f:facet>
+                <h:outputText value="#{item.record.price} SEK"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Total</f:facet>
                 <h:outputText value="#{item.totalPrice} SEK"/>
             </h:column>
         </h:dataTable>
 
-        <b><h:outputText style="font-size: larger" value="TOTAL: #{customerController.totalCartSum} SEK"/></b> <br/>
+        <b><h:outputText style="font-size: larger" value="TOTAL: #{customerController.totPriceOrderInfoList} SEK"/></b> <br/>
         <h:commandButton value="CONTINUE SHOPPING" action="#{customerController.shopAfterConfirmation}"/>
     </h:form>
 </h:body>

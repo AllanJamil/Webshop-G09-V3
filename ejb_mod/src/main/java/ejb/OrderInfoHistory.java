@@ -9,12 +9,12 @@ import java.util.Locale;
 public class OrderInfoHistory implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.MERGE)
     private Record record;
     private int quantity;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne()
     private OrderHistory order;
 
     public OrderInfoHistory(Record record, int quantity) {
@@ -44,11 +44,15 @@ public class OrderInfoHistory implements Serializable {
 
     /**
      * Metoden räknar ut summan av antalet av en specifik produkt
+     *
      * @return: summa
      */
-    public String calculateTotalPrice() {
-        int sum = quantity * record.getPrice();
-        return formatNumbers(sum) + " SEK";
+    public String getTotalPriceFormatted() {
+        return formatNumbers(getTotalPrice()) + " SEK";
+    }
+
+    public int getTotalPrice() {
+        return this.quantity * this.record.getPrice();
     }
 
     public String formattedQuantity() {
@@ -56,9 +60,9 @@ public class OrderInfoHistory implements Serializable {
     }
 
     private String formatNumbers(int number) {
-        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("sv","SE"));
+        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("sv", "SE"));
         String formmated = nf.format(number);
-        return formmated.substring(0,formmated.lastIndexOf(","));
+        return formmated.substring(0, formmated.lastIndexOf(","));
     }
 
     public OrderHistory getOrder() {
