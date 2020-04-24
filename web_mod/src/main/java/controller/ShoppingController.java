@@ -23,7 +23,6 @@ public class ShoppingController implements Serializable {
 
     @PostConstruct
     public void initial() {
-
         shoppingBean.setRecords(fetchDataBean.getAllRecords());
     }
 

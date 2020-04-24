@@ -21,7 +21,6 @@ public class User implements Serializable {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<OrderHistory> orders = new ArrayList<>();
 
-
     public User(String userName, String firstName, String lastName, String password, Role role) {
         this.userName = userName;
         this.firstName = firstName;
@@ -77,7 +76,6 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     public String getFormattedTotalSpent() {
         int sum = getTotalSpent();

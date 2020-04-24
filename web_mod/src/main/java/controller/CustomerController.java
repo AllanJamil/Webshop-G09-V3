@@ -74,16 +74,20 @@ public class CustomerController implements Serializable {
     }
 
     public String ConfirmOrder() {
-        createDataBean.addNewOrder(currentUserBeanLocal.getCurrentUser(),shoppingCart.getCartAsOrderInfoList());
-        shoppingCart.clearCart();
-        return "confirmation";
+        if (shoppingCart.getCartAsOrderInfoList().isEmpty()) {
+            return "cart";
+        } else {
+            createDataBean.addNewOrder(currentUserBeanLocal.getCurrentUser(), shoppingCart.getCartAsOrderInfoList());
+            shoppingCart.clearCart();
+            return "confirmation";
+        }
     }
 
     public List<OrderInfoHistory> getOrderInfoList() {
-    return shoppingCart.getOrderInfoHistoryList();
+        return shoppingCart.getOrderInfoHistoryList();
     }
 
     public int getTotPriceOrderInfoList() {
-       return shoppingCart.getTotPriceFromOrderInfoList();
+        return shoppingCart.getTotPriceFromOrderInfoList();
     }
 }
