@@ -98,6 +98,10 @@ public class User implements Serializable {
         this.orders = orders;
     }
 
-
+    public void upgradeToPremium(){
+        if(this.role == Role.CUSTOMER && this.getTotalSpent() >= 500_000){
+            this.setRole(Role.PREMIUM);
+        }
+    }
 
 }

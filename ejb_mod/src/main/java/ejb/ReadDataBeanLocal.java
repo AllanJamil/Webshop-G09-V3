@@ -14,4 +14,5 @@ public interface ReadDataBeanLocal {
     List<Record> getAllRecords();
 
     User fetchUserById(Long id);
+
 }

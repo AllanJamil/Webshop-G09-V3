@@ -7,4 +7,5 @@ import java.util.List;
 public interface CreateDataBeanLocal {
     void fillDb();
     void addNewOrder(User user, List<OrderInfoHistory> itemList);
+    void premiumUpgrade(User user);
 }

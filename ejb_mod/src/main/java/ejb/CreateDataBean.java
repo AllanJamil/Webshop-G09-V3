@@ -95,10 +95,18 @@ public class CreateDataBean implements CreateDataBeanLocal {
             oi.setOrder(order);
         }
         order.setItems(itemList);
-        if(user.getRole() == Role.CUSTOMER && user.getTotalSpent() >= 500_000){
-            em.merge(user);
-        }
+
         order.setUser(user);
         em.persist(order);
     }
+
+    @Override
+    public void premiumUpgrade(User user) {
+        if(user.getRole() == Role.CUSTOMER && user.getTotalSpent() >= 500_000){
+            user.setRole(Role.PREMIUM);
+            em.merge(user);
+        }
+    }
+
+
 }

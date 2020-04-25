@@ -44,4 +44,6 @@ public class ReadDataBean implements ReadDataBeanLocal {
     public User fetchUserById(Long id) {
         return em.createQuery("SELECT u FROM User u WHERE u.id = :id",User.class).setParameter("id",id).getSingleResult();
     }
+
+
 }
