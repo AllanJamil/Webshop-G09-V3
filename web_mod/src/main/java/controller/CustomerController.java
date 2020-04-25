@@ -84,7 +84,6 @@ public class CustomerController implements Serializable {
             createDataBean.addNewOrder(currentUserBeanLocal.getCurrentUser(), shoppingCart.getCartAsOrderInfoList());
             shoppingCart.clearCart();
             User user = fetchDataBean.fetchUserById(currentUserBeanLocal.getCurrentUser().getId());
-            user.upgradeToPremium();
             Logger.getLogger(User.class.getName()).log(Level.INFO, String.valueOf(user.getTotalSpent()));
             return "confirmation";
         }
