@@ -39,6 +39,7 @@
             <h:column>
                 <f:facet name="header">Quantity</f:facet>
                 <h:inputText styleClass="qty-input" value="#{item.qty}"/>
+                <h:commandButton value="Update" action="#{customerController.updateQuantity(item.record.id, item.qty)}"></h:commandButton>
             </h:column>
             <h:column>
                 <f:facet name="header">Total</f:facet>
