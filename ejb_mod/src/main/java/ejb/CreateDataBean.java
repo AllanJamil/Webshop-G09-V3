@@ -95,12 +95,10 @@ public class CreateDataBean implements CreateDataBeanLocal {
             oi.setOrder(order);
         }
         order.setItems(itemList);
-        // TODO Fix bug that emerges from persisting User to that the Premium Can be saved
-        // em.persist(user);
+        if(user.getRole() == Role.CUSTOMER && user.getTotalSpent() >= 500_000){
+            em.merge(user);
+        }
         order.setUser(user);
         em.persist(order);
-
-        // TODO Remove SOUT after success with persisting User
-        System.out.println("11111111"+order.getUser().getRole());
     }
 }

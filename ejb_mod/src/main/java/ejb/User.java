@@ -90,12 +90,6 @@ public class User implements Serializable {
                 .mapToInt(item -> item.getQuantity() * item.getRecord().getPrice()).sum()).sum();
     }
 
-    public void upgradeToPremium(){
-        if(this.role == Role.CUSTOMER && this.getTotalSpent() >= 500_000){
-            this.setRole(Role.PREMIUM);
-        }
-    }
-
     public List<OrderHistory> getOrders() {
         return orders;
     }

@@ -17,7 +17,7 @@ public class OrderHistory implements Serializable {
     private Long id;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST, mappedBy = "order")
     private List<OrderInfoHistory> items = new ArrayList<>();
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne()
     private User user;
 
     private Date date;
