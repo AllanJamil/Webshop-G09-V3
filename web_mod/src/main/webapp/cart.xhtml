@@ -48,6 +48,8 @@
         </h:dataTable>
 
 
+        <h:outputText style="font-size: larger" value="#{customerController.premium().length() > 0 ? 'Premium Medlem - Du får 10% Rabatt på hela ordern! ' : ''}"/>
+        <br/>
         <b><h:outputText style="font-size: larger" value="TOTAL: #{customerController.totalCartSum} SEK"/></b> <br/>
 
         <h:commandButton value="CHECK OUT" action="#{customerController.ConfirmOrder}"/>

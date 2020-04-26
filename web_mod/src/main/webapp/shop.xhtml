@@ -11,7 +11,9 @@
 <h:body>
     <h:graphicImage styleClass="logo" library="images" name="logo.png"/>
     <div class="header">
-        <h:outputLabel styleClass="greet" value="Welcome #{customerController.userFullName}" />
+        <h:outputLabel styleClass="greet" value="Welcome #{customerController.userFullName}">
+            <h:outputLabel value=" #{customerController.premium()}"></h:outputLabel>
+        </h:outputLabel>
         <div class="header-btn">
             <h:form>
                 <h:commandButton styleClass="logout-btn btn " value="Logout" action="#{customerController.logout}"/>

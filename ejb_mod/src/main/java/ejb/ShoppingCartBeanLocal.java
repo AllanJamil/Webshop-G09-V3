@@ -13,6 +13,6 @@ public interface ShoppingCartBeanLocal {
     List<CartItem> getCart();
     List<OrderInfoHistory> getCartAsOrderInfoList();
     List<OrderInfoHistory> getOrderInfoHistoryList();
-    int getTotPriceFromOrderInfoList();
+    int getTotPriceFromOrderInfoList(User user);
 
 }
