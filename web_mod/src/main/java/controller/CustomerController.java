@@ -64,7 +64,8 @@ public class CustomerController implements Serializable {
     }
 
     public String getTotalCartSum() {
-        int totalCartSum = shoppingCart.getTotalCartSum(currentUserBeanLocal.getCurrentUser());
+        User user = fetchDataBean.fetchUserById(currentUserBeanLocal.getCurrentUser().getId());
+        int totalCartSum = shoppingCart.getTotalCartSum(user);
         return String.valueOf(totalCartSum);
     }
 
@@ -94,6 +95,15 @@ public class CustomerController implements Serializable {
     }
 
     public int getTotPriceOrderInfoList() {
-        return shoppingCart.getTotPriceFromOrderInfoList();
+        User user = fetchDataBean.fetchUserById(currentUserBeanLocal.getCurrentUser().getId());
+        return shoppingCart.getTotPriceFromOrderInfoList(user);
+    }
+
+    public String premium(){
+        User user = fetchDataBean.fetchUserById(currentUserBeanLocal.getCurrentUser().getId());
+        if(user.getRole() == Role.PREMIUM){
+            return "Du är en Premium kund, du har 10% Rabatt i kassan";
+        }
+        return "";
     }
 }
