@@ -106,4 +106,7 @@ public class CustomerController implements Serializable {
         }
         return "";
     }
+    public void updateQuantity(Long recordId, int quantity){
+        shoppingCart.updateQuantity(recordId,quantity);
+    }
 }

@@ -118,4 +118,13 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
         }
         return sum;
     }
-}
+
+    public void updateQuantity(Long recordId, int quantity) {
+        for(CartItem cartItem : cart){
+
+            if(cartItem.getRecord().getId() == recordId){
+                cartItem.setQty(quantity);
+            }
+        }
+        }
+    }
