@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+<h:body>
+    <h:graphicImage styleClass="logo" library="images" name="logo.png"/>
+    <div class="header">
+        <h:outputLabel styleClass="greet" value="Welcome #{customerController.userFullName}">
+            <h:outputLabel value=" #{customerController.premium()}"></h:outputLabel>
+        </h:outputLabel>
+        <div class="header-btn">
+            <h:form>
+                <h:commandButton styleClass="logout-btn btn " value="Logout" action="#{customerController.logout}"/>
+            </h:form>
+            <h:form>
+                <h:commandLink action="cart">
+                    <div class="cart-icon">
+                        <h:graphicImage library="images" name="cart.png" height="30px" width="30px"/>
+                        <div class="cart-qty">#{customerController.cartLength}</div>
+                    </div>
+                </h:commandLink>
+            </h:form>
+        </div>
+    </div>
+    <div class="product-info">
+        <div class="info-img">
+            <h:graphicImage library="images" name="#{shoppingController.showProduct().imgURL}" width="350"/>
+        </div>
+        <div>
+            <table class="info-table">
+                <tr>
+                    <th>TITLE:</th>
+                    <td style="padding-left: 10px">#{shoppingController.showProduct().title}</td>
+                </tr>
+                <tr>
+                    <th>ARTIST:</th>
+                    <td style="padding-left: 10px">#{shoppingController.showProduct().artist}</td>
+                </tr>
+                <tr>
+                    <th>PRICE:</th>
+                    <td style="padding-left: 10px">#{shoppingController.showProduct().price} SEK</td>
+                </tr>
+                <tr>
+                    <th style="position: absolute">INFO:</th>
+                    <td style="padding-left: 10px" width="300px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut orci ligula. Praesent eu tincidunt ex.
+                        Nunc blandit dui id justo semper malesuada. In facilisis varius odio a volutpat. Morbi vitae quam eu nunc imperdiet vestibulum sed in erat.
+                        Duis eget augue at felis lobortis ornare vitae a turpis. Donec.</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+    <div class="buttons">
+        <h:form>
+            <h:commandButton action="#{customerController.addToCart(shoppingController.showProduct().id)}"
+                             styleClass="btn" value="Add to cart"/>
+            <h:commandButton action="shop" value="Continue shopping" styleClass="btn"/>
+        </h:form>
+    </div>
+</h:body>
+</html>

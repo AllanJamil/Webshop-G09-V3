@@ -46,4 +46,12 @@ public class ShoppingController implements Serializable {
         return shoppingBean.getRecords();
     }
 
+
+    public String sendProduct(Record chosenProduct) {
+        shoppingBean.setCurrentProduct(chosenProduct);
+        return "productInfo";
+    }
+    public Record showProduct() {
+        return shoppingBean.getCurrentProduct();
+    }
 }

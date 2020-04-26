@@ -10,5 +10,6 @@ public interface ShoppingBeanLocal {
     void setSearch(String search);
     List<Record> getRecords();
     void setRecords(List<Record> records);
-
+    void setCurrentProduct(Record currentProduct);
+    Record getCurrentProduct();
 }

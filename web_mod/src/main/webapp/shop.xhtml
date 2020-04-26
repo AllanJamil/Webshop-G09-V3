@@ -20,8 +20,9 @@
             </h:form>
             <h:form>
                 <h:commandLink action="cart">
-                    <div class="cart-icon"> <h:graphicImage library="images" name="cart.png" height="30px" width="30px" />
-                    <div class="cart-qty">#{customerController.cartLength}</div>
+                    <div class="cart-icon">
+                        <h:graphicImage library="images" name="cart.png" height="30px" width="30px" />
+                        <div class="cart-qty">#{customerController.cartLength}</div>
                     </div>
                 </h:commandLink>
             </h:form>
@@ -37,14 +38,16 @@
     </div>
 
     <div class="wrapper">
-        <ui:repeat var="temp" value="#{shoppingController.records}">
+        <ui:repeat var="product" value="#{shoppingController.records}">
             <div class="product">
                 <h:form>
-                    <h:graphicImage library="images" name="#{temp.imgURL}" width="100px" height="100px"/>
-                    <p class="artist">#{temp.artist}</p>
-                    <p class="title">#{temp.title}</p>
-                    <p class="price">#{temp.price}:-</p>
-                    <h:commandButton action="#{customerController.addToCart(temp.id)}" styleClass="btn" value="Add to cart"></h:commandButton>
+                    <h:commandLink action="#{shoppingController.sendProduct(product)}">
+                        <h:graphicImage styleClass="img-to-info" library="images" name="#{product.imgURL}" width="100px" height="100px"/>
+                    </h:commandLink>
+                    <p class="artist">#{product.artist}</p>
+                    <p class="title">#{product.title}</p>
+                    <p class="price">#{product.price} SEK</p>
+                    <h:commandButton action="#{customerController.addToCart(product.id)}" styleClass="btn" value="Add to cart"/>
                 </h:form>
             </div>
         </ui:repeat>
