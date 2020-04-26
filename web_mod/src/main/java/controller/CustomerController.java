@@ -10,7 +10,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.print.attribute.standard.Severity;
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -66,7 +68,8 @@ public class CustomerController implements Serializable {
     public String getTotalCartSum() {
         User user = fetchDataBean.fetchUserById(currentUserBeanLocal.getCurrentUser().getId());
         int totalCartSum = shoppingCart.getTotalCartSum(user);
-        return String.valueOf(totalCartSum);
+        NumberFormat nf = NumberFormat.getInstance(new Locale("sv", "SE"));
+        return nf.format(totalCartSum);
     }
 
     public String shopAfterEmptyCart() {
@@ -94,7 +97,7 @@ public class CustomerController implements Serializable {
         return shoppingCart.getOrderInfoHistoryList();
     }
 
-    public int getTotPriceOrderInfoList() {
+    public String getTotPriceOrderInfoList() {
         User user = fetchDataBean.fetchUserById(currentUserBeanLocal.getCurrentUser().getId());
         return shoppingCart.getTotPriceFromOrderInfoList(user);
     }

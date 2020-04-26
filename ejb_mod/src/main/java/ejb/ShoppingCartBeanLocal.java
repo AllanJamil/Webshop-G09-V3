@@ -13,7 +13,7 @@ public interface ShoppingCartBeanLocal {
     List<CartItem> getCart();
     List<OrderInfoHistory> getCartAsOrderInfoList();
     List<OrderInfoHistory> getOrderInfoHistoryList();
-    int getTotPriceFromOrderInfoList(User user);
+    String getTotPriceFromOrderInfoList(User user);
     void updateQuantity(Long recordId, int quantity);
 
 }

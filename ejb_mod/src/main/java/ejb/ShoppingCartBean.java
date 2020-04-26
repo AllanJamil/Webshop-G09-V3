@@ -2,8 +2,10 @@ package ejb;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Stateful(name = "LoggedInUserEJB")
 public class ShoppingCartBean implements ShoppingCartBeanLocal {
@@ -108,7 +110,7 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
         return this.orderInfoHistoryList;
     }
 
-    public int getTotPriceFromOrderInfoList(User user) {
+    public String getTotPriceFromOrderInfoList(User user) {
         int sum = 0;
         for (OrderInfoHistory orderInfoHistory: this.orderInfoHistoryList) {
             sum += orderInfoHistory.getTotalPrice();
@@ -116,7 +118,9 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
         if (user.getRole() == Role.PREMIUM) {
             sum = (int) (sum * 0.9);
         }
-        return sum;
+
+        NumberFormat nf = NumberFormat.getInstance(new Locale("sv", "SE"));
+        return nf.format(sum);
     }
 
     public void updateQuantity(Long recordId, int quantity) {

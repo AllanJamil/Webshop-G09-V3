@@ -1,6 +1,7 @@
 package ejb;
 
-import ejb.Record;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class CartItem {
 
@@ -30,5 +31,10 @@ public class CartItem {
 
     public int getTotalPrice() {
         return record.getPrice() * qty;
+    }
+
+    public String totalPriceFormatted() {
+        NumberFormat nf = NumberFormat.getInstance(new Locale("sv", "SE"));
+        return nf.format(record.getPrice() * qty);
     }
 }

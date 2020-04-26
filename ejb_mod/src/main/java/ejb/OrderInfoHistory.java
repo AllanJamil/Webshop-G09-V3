@@ -52,8 +52,6 @@ public class OrderInfoHistory implements Serializable {
     }
 
     public int getTotalPrice() {
-        //FIXME ropa metoden som räknar ut premium pris
-
         return this.quantity * this.record.getPrice();
     }
 
