@@ -43,10 +43,10 @@
                 <h:form>
                     <h:commandLink action="#{shoppingController.sendProduct(product)}">
                         <h:graphicImage styleClass="img-to-info" library="images" name="#{product.imgURL}" width="100px" height="100px"/>
-                    </h:commandLink>
                     <p class="artist">#{product.artist}</p>
                     <p class="title">#{product.title}</p>
-                    <p class="price">#{product.getPriceFormatted(product.price)} SEK</p>
+                    <p class="price">#{product.getPriceFormatted()} SEK</p>
+                    </h:commandLink>
                     <h:commandButton action="#{customerController.addToCart(product.id)}" styleClass="btn" value="Add to cart"/>
                 </h:form>
             </div>

@@ -35,10 +35,9 @@ public class Record implements Serializable {
         return price;
     }
 
-    public String getPriceFormatted(int price){
+    public String getPriceFormatted(){
     NumberFormat nf = NumberFormat.getInstance(new Locale("sv", "SE"));
-    return nf.format(price);
-
+    return nf.format(this.price);
     }
 
 

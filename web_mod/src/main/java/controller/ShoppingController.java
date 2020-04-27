@@ -54,4 +54,5 @@ public class ShoppingController implements Serializable {
     public Record showProduct() {
         return shoppingBean.getCurrentProduct();
     }
+
 }
