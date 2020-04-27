@@ -11,10 +11,12 @@ import javax.inject.Named;
 import javax.print.attribute.standard.Severity;
 import java.io.Serializable;
 import java.text.NumberFormat;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 @Named
 @SessionScoped
@@ -111,5 +113,9 @@ public class CustomerController implements Serializable {
     }
     public void updateQuantity(Long recordId, int quantity){
         shoppingCart.updateQuantity(recordId,quantity);
+    }
+
+    public void removeAlbum(Long recordId) {
+        shoppingCart.getCart().removeIf(cartItem -> cartItem.getRecord().getId() == recordId);
     }
 }

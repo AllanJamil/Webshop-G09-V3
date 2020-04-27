@@ -39,13 +39,16 @@
             <h:column>
                 <f:facet name="header">Quantity</f:facet>
                 <h:inputText styleClass="qty-input" value="#{item.qty}">
-                    <f:validateLongRange minimum="0" />
+                    <f:validateLongRange minimum="1" />
                 </h:inputText>
                 <h:commandButton value="Update" action="#{customerController.updateQuantity(item.record.id, item.qty)}"></h:commandButton>
             </h:column>
             <h:column>
                 <f:facet name="header">Total</f:facet>
                 <h:outputText value="#{item.totalPriceFormatted()} SEK"/>
+            </h:column>
+            <h:column>
+                <h:commandButton value="Remove Album" action="#{customerController.removeAlbum(item.record.id)}"></h:commandButton>
             </h:column>
         </h:dataTable>
 
