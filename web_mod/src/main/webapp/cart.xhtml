@@ -38,7 +38,9 @@
             </h:column>
             <h:column>
                 <f:facet name="header">Quantity</f:facet>
-                <h:inputText styleClass="qty-input" value="#{item.qty}"/>
+                <h:inputText styleClass="qty-input" value="#{item.qty}">
+                    <f:validateLongRange minimum="0" />
+                </h:inputText>
                 <h:commandButton value="Update" action="#{customerController.updateQuantity(item.record.id, item.qty)}"></h:commandButton>
             </h:column>
             <h:column>
