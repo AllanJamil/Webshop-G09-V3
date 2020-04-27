@@ -14,6 +14,7 @@ public interface ShoppingCartBeanLocal {
     List<OrderInfoHistory> getCartAsOrderInfoList();
     List<OrderInfoHistory> getOrderInfoHistoryList();
     String getTotPriceFromOrderInfoList(User user);
+    int totalTest(User user);
     void updateQuantity(Long recordId, int quantity);
 
 }

@@ -98,15 +98,15 @@ public class CreateDataBean implements CreateDataBeanLocal {
             orderInfoHistoryList3.add(new OrderInfoHistory(r1, 3355));
 
             //ORDER
-            addOrder(u4,orderInfoHistoryList1,LocalDate.of(2020, 1, 3));
-            addOrder(u1,orderInfoHistoryList2,LocalDate.of(2019, 11, 15));
-            addOrder(u2,orderInfoHistoryList3,LocalDate.of(2019, 8, 27));
+            addOrder(u4,orderInfoHistoryList1,LocalDate.of(2020, 1, 3), 627894);
+            addOrder(u1,orderInfoHistoryList2,LocalDate.of(2019, 11, 15), 35520);
+            addOrder(u2,orderInfoHistoryList3,LocalDate.of(2019, 8, 27), 499895 );
         }
     }
 
     // metod för att fylla databas med fake data endast intern metod som kan vara private
-    private void addOrder(User user, List<OrderInfoHistory> itemList, LocalDate date) {
-        OrderHistory order = new OrderHistory(user,itemList,date);
+    private void addOrder(User user, List<OrderInfoHistory> itemList, LocalDate date, int orderTotal) {
+        OrderHistory order = new OrderHistory(user,itemList,date, orderTotal);
         for (OrderInfoHistory oi: itemList) {
             oi.setOrder(order);
         }
@@ -122,8 +122,9 @@ public class CreateDataBean implements CreateDataBeanLocal {
      * @param itemList
      */
     @Override
-    public void addNewOrder(User user, List<OrderInfoHistory> itemList) {
-        OrderHistory order = new OrderHistory(user,itemList,LocalDate.now());
+    public void addNewOrder(User user, List<OrderInfoHistory> itemList, int orderTotal) {
+
+        OrderHistory order = new OrderHistory(user,itemList,LocalDate.now(), orderTotal);
         for (OrderInfoHistory oi: itemList) {
             oi.setOrder(order);
         }

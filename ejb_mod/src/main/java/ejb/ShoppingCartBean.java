@@ -113,6 +113,17 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
         return this.orderInfoHistoryList;
     }
 
+    public int totalTest(User user) {
+        int sum = 0;
+        for (OrderInfoHistory orderInfoHistory: this.orderInfoHistoryList) {
+            sum += orderInfoHistory.getTotalPrice();
+        }
+        if (user.getRole() == Role.PREMIUM) {
+            sum = (int) (sum * 0.9);
+        }
+        return sum;
+    }
+
     public String getTotPriceFromOrderInfoList(User user) {
         int sum = 0;
         for (OrderInfoHistory orderInfoHistory: this.orderInfoHistoryList) {

@@ -19,13 +19,15 @@ public class OrderHistory implements Serializable {
     private List<OrderInfoHistory> items = new ArrayList<>();
     @ManyToOne()
     private User user;
+    private int orderTotal;
 
     private Date date;
 
-    public OrderHistory(User user, List<OrderInfoHistory> items, LocalDate date) {
+    public OrderHistory(User user, List<OrderInfoHistory> items, LocalDate date, int orderTotal) {
         this.date = Date.valueOf(date);
         this.user = user;
         this.items = items;
+        this.orderTotal = orderTotal;
     }
 
     public OrderHistory() {
@@ -89,4 +91,11 @@ public class OrderHistory implements Serializable {
         return date.toString();
     }
 
+    public void setOrderTotal(int orderTotal) {
+        this.orderTotal = orderTotal;
+    }
+
+    public int getOrderTotal() {
+        return orderTotal;
+    }
 }

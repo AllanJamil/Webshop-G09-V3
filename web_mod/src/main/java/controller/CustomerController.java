@@ -85,7 +85,9 @@ public class CustomerController implements Serializable {
         if (shoppingCart.getCartAsOrderInfoList().isEmpty()) {
             return "cart";
         } else {
-            createDataBean.addNewOrder(currentUserBeanLocal.getCurrentUser(), shoppingCart.getCartAsOrderInfoList());
+            User user = fetchDataBean.fetchUserById(currentUserBeanLocal.getCurrentUser().getId());
+            createDataBean.addNewOrder(user, shoppingCart.getCartAsOrderInfoList(),
+                    shoppingCart.totalTest(user));
             shoppingCart.clearCart();
             return "confirmation";
         }
