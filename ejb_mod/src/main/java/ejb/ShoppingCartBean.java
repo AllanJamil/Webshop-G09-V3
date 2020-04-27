@@ -18,6 +18,9 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
     @EJB
     private ReadDataBeanLocal fetchDataBean;
 
+    @EJB
+    private CreateDataBeanLocal createDataBean;
+
 
     public ShoppingCartBean() {
         cart = new ArrayList<>();
@@ -118,7 +121,7 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
         if (user.getRole() == Role.PREMIUM) {
             sum = (int) (sum * 0.9);
         }
-
+        createDataBean.premiumUpgrade(user);
         NumberFormat nf = NumberFormat.getInstance(new Locale("sv", "SE"));
         return nf.format(sum);
     }
