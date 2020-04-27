@@ -46,7 +46,7 @@
                     </h:commandLink>
                     <p class="artist">#{product.artist}</p>
                     <p class="title">#{product.title}</p>
-                    <p class="price">#{product.price} SEK</p>
+                    <p class="price">#{product.getPriceFormatted(product.price)} SEK</p>
                     <h:commandButton action="#{customerController.addToCart(product.id)}" styleClass="btn" value="Add to cart"/>
                 </h:form>
             </div>

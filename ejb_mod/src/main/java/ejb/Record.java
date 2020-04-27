@@ -2,6 +2,8 @@ package ejb;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 @Entity
 public class Record implements Serializable {
@@ -32,6 +34,13 @@ public class Record implements Serializable {
     public int getPrice() {
         return price;
     }
+
+    public String getPriceFormatted(int price){
+    NumberFormat nf = NumberFormat.getInstance(new Locale("sv", "SE"));
+    return nf.format(price);
+
+    }
+
 
     public void setPrice(int price) {
         this.price = price;
