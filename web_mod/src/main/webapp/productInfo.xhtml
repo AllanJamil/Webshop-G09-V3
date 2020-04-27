@@ -55,13 +55,13 @@
             </table>
 
         </div>
-    </div>
-    <div class="buttons">
-        <h:form>
-            <h:commandButton action="#{customerController.addToCart(shoppingController.showProduct().id)}"
-                             styleClass="btn" value="Add to cart"/>
-            <h:commandButton action="shop" value="Continue shopping" styleClass="btn"/>
-        </h:form>
+        <div class="buttons">
+            <h:form>
+                <h:commandButton action="#{customerController.addToCart(shoppingController.showProduct().id)}"
+                                 styleClass="btn-info" value="Add to cart"/>
+                <h:commandButton styleClass="btn-info" action="shop" value="Continue shopping"/>
+            </h:form>
+        </div>
     </div>
 </h:body>
 </html>
