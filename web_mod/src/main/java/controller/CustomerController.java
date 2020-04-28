@@ -130,15 +130,11 @@ public class CustomerController implements Serializable {
     }
     public void updateQuantity(Long recordId, int quantity){
         shoppingCart.updateQuantity(recordId,quantity);
+        shoppingCart.updateCartLength();
     }
 
     public void removeAlbum(Long recordId) {
-        for(CartItem cartItem : shoppingCart.getCart()){
-            if(cartItem.getRecord().getId() == recordId){
-                shoppingCart.setCartLength(shoppingCart.getCartLength() - cartItem.getQty());
-            }
-        }
         shoppingCart.getCart().removeIf(cartItem -> cartItem.getRecord().getId() == recordId);
-
+        shoppingCart.updateCartLength();
     }
 }
