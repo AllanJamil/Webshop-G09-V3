@@ -76,11 +76,13 @@ public class CreateDataBean implements CreateDataBeanLocal {
             final User u3 = new User("sandra85", "Sandra", "Berg", "mittlosen", Role.CUSTOMER);
             final User u4 = new User("Larssa2000", "Lars", "Lerin", "Junior123", Role.PREMIUM);
             final User u5 = new User("HockeyDanne", "Daniel", "Sedin", "qwerty", Role.ADMIN);
+            final User u6 = new User("sa", "Förnamn", "Efternamn", "sa", Role.PREMIUM);
             userList.add(u1);
             userList.add(u2);
             userList.add(u3);
             userList.add(u4);
             userList.add(u5);
+            userList.add(u6);
 
             userList.forEach(user -> em.persist(user));
 

@@ -9,22 +9,26 @@
     <h:outputStylesheet library="css" name="styles.css"/>
 </h:head>
 <h:body>
-    <h:graphicImage styleClass="logo" library="images" name="logo.png"/>
     <div class="header">
-        <h:outputLabel styleClass="greet" value="Welcome #{customerController.userFullName}">
-            <h:outputLabel value=" #{customerController.premium()}"></h:outputLabel>
-        </h:outputLabel>
+        <h:graphicImage class="logo" library="images" name="logo.png"/>
         <div class="header-btn">
-            <h:form>
-                <h:commandButton styleClass="logout-btn btn " value="Logout" action="#{customerController.logout}"/>
-            </h:form>
             <h:form>
                 <h:commandLink action="cart">
                     <div class="cart-icon">
-                        <h:graphicImage library="images" name="cart.png" height="30px" width="30px" />
-                        <div class="cart-qty">#{customerController.cartLength}</div>
+                        <h:graphicImage styleClass="cart-img" library="images" name="cart.png"/>
+                        <div class="cart-qty" style="visibility: #{customerController.cartIconStatus}">#{customerController.cartLength}</div>
                     </div>
                 </h:commandLink>
+            </h:form>
+        </div>
+    </div>
+    <div class="userGreeting">
+        <div class="user">
+            <h:outputLabel styleClass="greet" value="Welcome #{customerController.userFullName}">
+                <h:outputLabel value=" #{customerController.premium()}"></h:outputLabel>
+            </h:outputLabel>
+            <h:form>
+                <h:commandButton styleClass="logout-btn btn " value="Logout" action="#{customerController.logout}"/>
             </h:form>
         </div>
     </div>
@@ -40,14 +44,13 @@
     <div class="wrapper">
         <ui:repeat var="product" value="#{shoppingController.records}">
             <div class="product">
-                <h:form>
-                    <h:commandLink action="#{shoppingController.sendProduct(product)}">
-                        <h:graphicImage styleClass="img-to-info" library="images" name="#{product.imgURL}" width="100px" height="100px"/>
+                <h:form styleClass="product-info">
+                    <h:commandLink styleClass="product-link" action="#{shoppingController.sendProduct(product)}">
+                        <h:graphicImage styleClass="img-to-info product-img" library="images" name="#{product.imgURL}"/>
                     <p class="artist">#{product.artist}</p>
                     <p class="title">#{product.title}</p>
                     <p class="price">#{product.getPriceFormatted()} SEK</p>
                     </h:commandLink>
-                    <h:commandButton action="#{customerController.addToCart(product.id)}" styleClass="btn" value="Add to cart"/>
                 </h:form>
             </div>
         </ui:repeat>

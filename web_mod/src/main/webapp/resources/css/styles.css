@@ -2,34 +2,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans&display=swap');
 
 body {
+    margin: 0;
     background-color: white;
-    font-family: "Helvetica Neue";
+    font-family: "Lato";
     font-size: 14px;
     text-align: center;
 }
 
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
+
+
 .btn {
-    width: auto;
-    height: 30px;
-    background-color: #1ca452;
-    color: white;
     padding: 10px;
     text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
     outline: none;
-    border: none;
-    border-radius: 5px;
+    border: #113e28 solid 1px;
+    border-radius: 3px;
     display: flex;
     align-content: center;
     justify-content: center;
     cursor: pointer;
+    font-size: 10px;
 }
 
 .logo {
-    height: 180px;
+    height: 100px;
     width: auto;
-    margin-bottom: 40px;
 }
 
 /*Login*/
@@ -70,17 +72,31 @@ body {
 .login-btn {
     margin-top: 30px ;
     cursor: pointer;
+    background-color: #1ca452;
+    color: white;
+    border: none;
 }
+
+.login-btn:hover {
+    text-decoration: none;
+    background-color: rgba(28, 164, 82, 0.8);
+}
+
+
 
 /*shop*/
 .header {
     display: flex;
     flex-direction: row;
-    align-content: center;
     justify-content: space-between;
     padding: 5px;
-    background-color: #1ca452;
+    background-color: #113e28;
     color: white;
+    height: 100px;
+    width: 100%;
+    opacity: 90%;
+    position: fixed;
+    top: 0;
 }
 
 .header-btn {
@@ -93,7 +109,7 @@ body {
     position: absolute;
     background-color: #dc882e;
     color: white;
-    top: -10px;
+    top: -7px;
     right: -10px;
     padding: 5px;
     width: 10px;
@@ -104,39 +120,45 @@ body {
     font-weight: bold;
     font-family: "Helvetica Neue";
 }
+.cart-img {
+    width: 30px;
+    height: auto;
+}
 
 .cart-icon {
     position: relative;
+    margin-top: 35px;
+    margin-right: 30px;
+}
+
+
+.shop-page {
+    margin-top: 150px;
 }
 .search {
     display: flex;
     justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
 }
 
 .search-input {
     width: 600px;
     margin-right: 30px;
     border: none;
-    border-bottom: #1ca452 solid 1px;
-    color: #1ca452;
+    border-bottom: #113e28 solid 2px;
+    color: #113e28;
     font-size: 32px;
 }
 
 .search-input:focus {
-outline: none;
+    outline: none;
 }
 
-.search-btn {
-    padding: 5px;
-    border-radius: 50px;
-}
 
-.search-btn:hover {
-    background: rgb(28,164,82);
+.user {
+    text-align: start;
+    margin-left: 20px;
 }
-
 
 .wrapper {
     display: flex;
@@ -148,40 +170,88 @@ outline: none;
 
 }
 
+.product-img {
+    width: 150px;
+    height: 150px;
+}
+
+
 .product {
-    text-align: center;
     margin: 10px;
     padding: 5px;
+    width: 150px;
+}
+
+.product-form {
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 2px;
 }
 
 .greet {
     letter-spacing: 2px;
+    font-size: 10px;
+    text-transform: uppercase;
 }
 
 .btn:hover {
-    background-color: #dc882e;
+    text-decoration: underline;
 }
 .logout-btn {
-    margin-right: 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    background-color: transparent;
+    padding: 0;
+    border: none;
 }
 
 .logout-btn:hover {
-    background-color: #1ca452;
     text-decoration: underline;
 }
 
 .artist {
-    color: #1ca452;
+    color: #113e28;
     font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
 }
 
 .title {
     color: grey;
+    font-size: 12px;
+    letter-spacing: 3px;
 }
 
 .price {
-    font-size: 18px;
-    color: #1ca452;
+    font-size: 12px;
+    color: #113e28;
+}
+
+.userGreeting {
+    margin-top: 8rem;
+}
+/*ProductInfo*/
+
+.info-img {
+    width: 260px;
+    height: auto;
+}
+.product-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+.info-description {
+    text-align: left;
+    margin-left: 80px;
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .table {
@@ -213,10 +283,25 @@ outline: none;
     width: 20px;
 }
 
-.product-info {
-    padding-top: 75px;
-    margin: auto;
-    width: 80%;
+
+.infotxt {
+    margin-bottom: 50px;
+}
+
+.info-btn-form {
+    display: flex;
+    flex-direction: row;
+}
+.info-btn {
+    margin-right: 10px;
+    background-color: rgba(17, 62, 40, 0.8);
+    color: white;
+    border: none;
+}
+
+.info-btn:hover {
+    text-decoration: none;
+    background-color: rgba(17, 62, 40, 0.6);
 }
 
 .info-img {

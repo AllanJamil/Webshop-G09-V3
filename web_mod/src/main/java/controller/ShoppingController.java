@@ -34,6 +34,7 @@ public class ShoppingController implements Serializable {
         shoppingBean.setSearch(search);
     }
 
+
     public void search() {
         List<Record> filteredRecords = fetchDataBean.getAllRecords().parallelStream().filter(str ->
                 str.getArtist().toLowerCase().contains(shoppingBean.getSearch().toLowerCase()) ||

@@ -35,6 +35,8 @@ public class CustomerController implements Serializable {
     @EJB
     private CurrentUserBeanLocal currentUserBeanLocal;
 
+    private String cartIconStatus = "hidden";
+
     @PostConstruct
     public void ini() {
         this.currentUserBeanLocal = loginController.getCurrentUserBeanLocal();
@@ -53,6 +55,13 @@ public class CustomerController implements Serializable {
         return shoppingCart.getCart();
     }
 
+    public String getCartIconStatus() {
+        return cartIconStatus;
+    }
+
+    public void setCartIconStatus(String cartIconStatus) {
+        this.cartIconStatus = cartIconStatus;
+    }
 
     public String logout() {
         shoppingCart.clearCart();
@@ -61,10 +70,12 @@ public class CustomerController implements Serializable {
 
     public void addToCart(int id) {
         shoppingCart.addToCart(id);
+        this.cartIconStatus = "visible";
     }
 
     public void clearCart() {
         shoppingCart.clearCart();
+        this.cartIconStatus = "hidden";
     }
 
     public String getTotalCartSum() {
