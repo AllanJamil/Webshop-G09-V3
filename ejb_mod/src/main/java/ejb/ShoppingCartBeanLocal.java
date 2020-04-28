@@ -16,5 +16,5 @@ public interface ShoppingCartBeanLocal {
     String getTotPriceFromOrderInfoList(User user);
     int totalTest(User user);
     void updateQuantity(Long recordId, int quantity);
-
+    void setCartLength(int cartLength);
 }

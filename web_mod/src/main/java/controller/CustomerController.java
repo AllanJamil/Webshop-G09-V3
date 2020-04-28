@@ -51,6 +51,12 @@ public class CustomerController implements Serializable {
         return shoppingCart.getCartLength();
     }
 
+    public void setCartLength(int cartLength) {
+        shoppingCart.setCartLength(cartLength);
+    }
+
+
+
     public List<CartItem> getCart() {
         return shoppingCart.getCart();
     }
@@ -127,6 +133,12 @@ public class CustomerController implements Serializable {
     }
 
     public void removeAlbum(Long recordId) {
+        for(CartItem cartItem : shoppingCart.getCart()){
+            if(cartItem.getRecord().getId() == recordId){
+                shoppingCart.setCartLength(shoppingCart.getCartLength() - cartItem.getQty());
+            }
+        }
         shoppingCart.getCart().removeIf(cartItem -> cartItem.getRecord().getId() == recordId);
+
     }
 }
