@@ -37,7 +37,7 @@
             </h:column>
             <h:column>
                 <f:facet name="header">Total</f:facet>
-                <h:outputText value="#{order.orderTotal}"/>
+                <h:outputText value="#{order.formattedOrderTotal()}"/>
             </h:column>
             <h:column>
                <h:commandButton value="VIEW" action="#{adminController.viewItemsInOrder(order.id)}"/>

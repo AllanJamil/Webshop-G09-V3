@@ -57,10 +57,9 @@ public class OrderHistory implements Serializable {
      *
      * @return: summan för en beställning
      */
-    public String calculateOrderTotal() {
+    public String formattedOrderTotal() {
 
-        int sum = items.parallelStream().mapToInt(item -> item.getQuantity() * item.getRecord().getPrice()).sum();
-        return formatNumbers(sum) + " SEK";
+        return formatNumbers(orderTotal) + " SEK";
     }
 
     /**
