@@ -22,33 +22,32 @@
 
     <h1>CUSTOMER OVERVIEW</h1>
     <h:form>
-        <h:dataTable styleClass="table" value="#{adminController.customerList}" var="customer" cellpaddijsfng="10">
-            <h:column>
-                <f:facet name="header">Username</f:facet>
+        <h:dataTable styleClass="table" value="#{adminController.customerList}" var="customer" cellpadding="10">
+            <h:column headerClass="customHeader">
+                    <f:facet name="header">Username</f:facet>
                 <h:outputText value="#{customer.userName}"/>
             </h:column>
-            <h:column>
-                <f:facet name="header">Firstname</f:facet>
+            <h:column headerClass="customHeader">
+                    <f:facet name="header">Firstname</f:facet>
                 <h:outputText value="#{customer.firstName}"/>
             </h:column>
-            <h:column>
-                <f:facet name="header">Lastname</f:facet>
+            <h:column headerClass="customHeader">
+                    <f:facet name="header">Lastname</f:facet>
                 <h:outputText value="#{customer.lastName}"/>
             </h:column>
-            <h:column>
-                <f:facet name="header">Spent</f:facet>
+            <h:column headerClass="customHeader">
+                    <f:facet name="header">Spent</f:facet>
                 <h:outputText value="#{customer.formattedTotalSpent}"/>
             </h:column>
-            <h:column>
-                <f:facet name="header">Role</f:facet>
+            <h:column headerClass="customHeader">
+                    <f:facet name="header">Role</f:facet>
                 <h:outputText value="#{customer.role}"/>
             </h:column>
             <h:column>
-                <h:commandButton value="VIEW" action="#{adminController.viewCustomerOrder(customer.id)}"/>
+                <h:commandButton styleClass="info-btn" value="VIEW" action="#{adminController.viewCustomerOrder(customer.id)}"/>
             </h:column>
         </h:dataTable>
     </h:form>
-
 
 </h:body>
 </html>

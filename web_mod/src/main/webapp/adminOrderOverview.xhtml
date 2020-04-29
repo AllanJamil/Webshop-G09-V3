@@ -23,28 +23,28 @@
     <h1>ORDER OVERVIEW</h1>
     <h:form>
         <h:dataTable styleClass="table" value="#{adminController.orderHistoryList}" var="order" cellpadding="10">
-            <h:column>
+            <h:column headerClass="customHeader">
                 <f:facet name="header">Ordernumber</f:facet>
                 <h:outputText value="#{order.id}"/>
             </h:column>
-            <h:column>
+            <h:column headerClass="customHeader">
                 <f:facet name="header">Date</f:facet>
                 <h:outputText value="#{order.date}"/>
             </h:column>
-            <h:column>
+            <h:column headerClass="customHeader">
                 <f:facet name="header">Items</f:facet>
                 <h:outputText value="#{order.calculateItemsQuantity()}"/>
             </h:column>
-            <h:column>
+            <h:column headerClass="customHeader">
                 <f:facet name="header">Total</f:facet>
                 <h:outputText value="#{order.formattedOrderTotal()}"/>
             </h:column>
             <h:column>
-               <h:commandButton value="VIEW" action="#{adminController.viewItemsInOrder(order.id)}"/>
+               <h:commandButton styleClass="info-btn" value="VIEW" action="#{adminController.viewItemsInOrder(order.id)}"/>
             </h:column>
         </h:dataTable>
 
-        <h:commandButton value="RETURN TO USERS" action="adminUserOverview"/>
+        <h:commandButton styleClass="info-btn" value="RETURN TO USERS" action="adminUserOverview"/>
     </h:form>
 
 </h:body>
