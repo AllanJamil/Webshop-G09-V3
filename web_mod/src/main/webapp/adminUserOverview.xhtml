@@ -9,11 +9,12 @@
     <h:outputStylesheet library="css" name="styles.css"/>
 </h:head>
 <h:body>
-    <h:graphicImage styleClass="logo" library="images" name="logo.png"/>
     <div class="header">
-        <h:outputLabel styleClass="greet"
-                       value="ADMIN #{adminController.userFullName}"/>
-        <div class="header-btn">
+        <h:graphicImage class="logo" library="images" name="logo.png"/>
+    </div>
+    <div class="userGreeting">
+        <div class="user">
+            <h:outputLabel styleClass="greet" value="Welcome #{adminController.userFullName}"/>
             <h:form>
                 <h:commandButton styleClass="logout-btn btn " value="Logout" action="#{customerController.logout}"/>
             </h:form>
