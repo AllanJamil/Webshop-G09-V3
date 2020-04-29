@@ -22,26 +22,26 @@
 
     <h1>ITEM OVERVIEW</h1>
     <h:dataTable styleClass="table" value="#{adminController.itemList}" var="item" cellpadding="10">
-        <h:column>
+        <h:column headerClass="customHeader">
             <f:facet name="header">Title</f:facet>
             <h:outputText value="#{item.record.title}"/>
         </h:column>
-        <h:column>
+        <h:column headerClass="customHeader">
             <f:facet name="header">Artist</f:facet>
             <h:outputText value="#{item.record.artist}"/>
         </h:column>
-        <h:column>
+        <h:column headerClass="customHeader">
             <f:facet name="header">Quantity</f:facet>
             <h:outputText value="#{item.formattedQuantity()}"/>
         </h:column>
-        <h:column>
+        <h:column headerClass="customHeader">
             <f:facet name="header">Price</f:facet>
             <h:outputText value="#{item.totalPriceFormatted}"/>
         </h:column>
     </h:dataTable>
 
     <h:form>
-        <h:commandButton value="RETURN TO ORDERS" action="adminOrderOverview"/>
+        <h:commandButton styleClass="info-btn" value="RETURN TO ORDERS" action="adminOrderOverview"/>
     </h:form>
 </h:body>
 </html>
