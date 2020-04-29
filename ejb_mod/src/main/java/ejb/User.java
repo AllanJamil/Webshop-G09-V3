@@ -86,8 +86,7 @@ public class User implements Serializable {
     }
 
     public int getTotalSpent() {
-        return orders.parallelStream().mapToInt(order -> order.getItems().parallelStream()
-                .mapToInt(item -> item.getQuantity() * item.getRecord().getPrice()).sum()).sum();
+        return orders.parallelStream().mapToInt(order -> order.getOrderTotal()).sum();
     }
 
     public List<OrderHistory> getOrders() {
