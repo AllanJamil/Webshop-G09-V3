@@ -19,7 +19,7 @@ public class ShoppingBean implements ShoppingBeanLocal{
     }
 
     public void setSearch(String search) {
-        this.search = search;
+        this.search = search.trim();
     }
 
     public List<Record> getRecords() {

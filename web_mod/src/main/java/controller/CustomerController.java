@@ -8,15 +8,10 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.print.attribute.standard.Severity;
 import java.io.Serializable;
 import java.text.NumberFormat;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.stream.Stream;
 
 @Named
 @SessionScoped
@@ -106,7 +101,7 @@ public class CustomerController implements Serializable {
         } else {
             User user = fetchDataBean.fetchUserById(currentUserBeanLocal.getCurrentUser().getId());
             createDataBean.addNewOrder(user, shoppingCart.getCartAsOrderInfoList(),
-                    shoppingCart.totalTest(user));
+                    shoppingCart.getTotalSum(user));
             shoppingCart.clearCart();
             return "confirmation";
         }

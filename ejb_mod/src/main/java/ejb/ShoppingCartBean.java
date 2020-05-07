@@ -52,23 +52,28 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
 
     @Override
     public void addToCart(int id) {
-        CartItem cartItem = getCartItemFromId(id);
-        if (cartItem != null) {
-            cartItem.setQty(cartItem.getQty() + 1);
-        } else {
-            for (Record record : fetchDataBean.getAllRecords()) {
-                if (record.getId() == id) {
-                    cart.add(new CartItem(record));
+        if (cartLength < 10_000) {
+
+            CartItem cartItem = getCartItemFromId(id);
+            if (cartItem != null) {
+                cartItem.setQty(cartItem.getQty() + 1);
+            } else {
+                for (Record record : fetchDataBean.getAllRecords()) {
+                    if (record.getId() == id) {
+                        cart.add(new CartItem(record));
+                    }
                 }
             }
+            updateCartLength();
         }
-        updateCartLength();
     }
+
     @Override
     public void clearCart() {
         this.cart.clear();
         this.cartLength = 0;
     }
+
     @Override
     public CartItem getCartItemFromId(int id) {
         for (CartItem cartItem : cart) {
@@ -77,7 +82,8 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
             }
         }
         return null;
-}
+    }
+
     @Override
     public void updateCartLength() {
         int count = 0;
@@ -90,20 +96,22 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
 
     public int getTotalCartSum(User user) {
         int result = 0;
-        for (CartItem cartItem:cart) {
+        for (CartItem cartItem : cart) {
             result += cartItem.getTotalPrice();
         }
         if (user.getRole() == Role.PREMIUM) {
-        result = (int) (result * 0.9);
-    }
+            double rounded = Math.round(result * 0.9);
+            result = (int) rounded;
+        }
         return result;
 
     }
+
     public List<OrderInfoHistory> getCartAsOrderInfoList() {
 
         this.orderInfoHistoryList = new ArrayList<>();
 
-        for (CartItem cartItem:this.cart) {
+        for (CartItem cartItem : this.cart) {
             OrderInfoHistory orderInfoHistory = new OrderInfoHistory();
             orderInfoHistory.setRecord(cartItem.getRecord());
             orderInfoHistory.setQuantity(cartItem.getQty());
@@ -113,24 +121,26 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
         return this.orderInfoHistoryList;
     }
 
-    public int totalTest(User user) {
+    public int getTotalSum(User user) {
         int sum = 0;
-        for (OrderInfoHistory orderInfoHistory: this.orderInfoHistoryList) {
+        for (OrderInfoHistory orderInfoHistory : this.orderInfoHistoryList) {
             sum += orderInfoHistory.getTotalPrice();
         }
         if (user.getRole() == Role.PREMIUM) {
-            sum = (int) (sum * 0.9);
+            double rounded = Math.round(sum * 0.9);
+            sum = (int) rounded;
         }
         return sum;
     }
 
     public String getTotPriceFromOrderInfoList(User user) {
         int sum = 0;
-        for (OrderInfoHistory orderInfoHistory: this.orderInfoHistoryList) {
+        for (OrderInfoHistory orderInfoHistory : this.orderInfoHistoryList) {
             sum += orderInfoHistory.getTotalPrice();
         }
         if (user.getRole() == Role.PREMIUM) {
-            sum = (int) (sum * 0.9);
+            double rounded = Math.round(sum * 0.9);
+            sum = (int) rounded;
         }
         createDataBean.premiumUpgrade(user);
         NumberFormat nf = NumberFormat.getInstance(new Locale("sv", "SE"));
@@ -138,11 +148,11 @@ public class ShoppingCartBean implements ShoppingCartBeanLocal {
     }
 
     public void updateQuantity(Long recordId, int quantity) {
-        for(CartItem cartItem : cart){
+        for (CartItem cartItem : cart) {
 
-            if(cartItem.getRecord().getId() == recordId){
+            if (cartItem.getRecord().getId() == recordId) {
                 cartItem.setQty(quantity);
             }
         }
-        }
     }
+}
